@@ -1,0 +1,174 @@
+.facilities-wrapper {
+  padding: 1rem 0 4rem 0;
+  .facility-inner-left {
+    position: relative;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    .facility-inner {
+      border: 1px solid #707070;
+      position: absolute;
+      width: 710px;
+      height: 390px;
+    }
+    .facility-desc {
+      padding: 40px 27px;
+    }
+    .swiper {
+      width: 100%;
+      height: 100%;
+      -webkit-user-select: none; /* Safari */
+      -ms-user-select: none; /* IE 10 and IE 11 */
+      user-select: none; /* Standard syntax */
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 27rem;
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .action-btn {
+      position: absolute;
+      left: 15rem;
+      bottom: 3rem;
+      width: 7rem;
+      height: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .swiper-next,
+      .swiper-prev {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $primary-color;
+        border-radius: 50%;
+        i {
+          font-size: 20px;
+          color: $color-white;
+        }
+      }
+    }
+    .swiper-next {
+      width: 45px;
+      height: 45px;
+    }
+    .swiper-prev {
+      width: 45px;
+      height: 45px;
+    }
+  }
+  .facility-inner-right {
+    position: relative;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    .facility-inner {
+      border: 1px solid #707070;
+      position: absolute;
+      right: 0;
+      width: 710px;
+      height: 390px;
+    }
+    .facility-desc {
+      padding: 40px 27px;
+    }
+    .swiper {
+      width: 100%;
+      height: 100%;
+      -webkit-user-select: none; /* Safari */
+      -ms-user-select: none; /* IE 10 and IE 11 */
+      user-select: none; /* Standard syntax */
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 27rem;
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .action-btn {
+      position: absolute;
+      right: 15rem;
+      bottom: 3rem;
+      width: 7rem;
+      height: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .swiper-next,
+      .swiper-prev {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $primary-color;
+        border-radius: 50%;
+        i {
+          font-size: 20px;
+          color: $color-white;
+        }
+      }
+    }
+    .swiper-next {
+      width: 45px;
+      height: 45px;
+    }
+    .swiper-prev {
+      width: 45px;
+      height: 45px;
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    .facility-inner-left,
+    .facility-inner-right {
+      .facility-inner {
+        width: 700px;
+        height: 350px;
+      }
+    }
+    .facility-inner-left {
+      .action-btn {
+        left: 5rem;
+      }
+    }
+    .facility-inner-right {
+      .action-btn {
+        right: 5rem;
+      }
+    }
+  }
+  @media screen and (max-width: 992px) {
+    .facility-inner-left,
+    .facility-inner-right {
+      margin-bottom: 2.5rem;
+      padding: 0;
+      .facility-inner {
+        display: none;
+      }
+      .swiper-slide {
+        height: 20rem;
+      }
+      .facility-desc {
+        border: 1px solid #707070;
+      }
+      .action-btn {
+        display: none;
+      }
+    }
+  }
+}

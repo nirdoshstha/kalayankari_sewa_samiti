@@ -1,0 +1,55 @@
+.message-section {
+  .message-wrapper {
+    background: $grandent;
+    margin-bottom: 5rem;
+    .author-image {
+      background-color: $color-white;
+      padding: 0.4rem;
+      transform: translateY(3.5rem);
+    }
+    .aurthor-holder {
+      h1,
+      h3 {
+        color: $color-white;
+      }
+      h1 {
+        font-size: 44px;
+        margin-bottom: 1.5rem;
+      }
+      h3 {
+        font-size: 26px;
+      }
+    }
+  }
+  .message-content {
+    p {
+      font-size: 14px;
+    }
+  }
+  @media screen and (max-width: 992px) {
+    .message-wrapper {
+      padding-top: 3rem;
+      margin-bottom: 0;
+      .author-image {
+        transform: translateY(0);
+        margin-bottom: 2rem;
+      }
+      .aurthor-holder {
+        margin-bottom: 1.5rem;
+      }
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .message-wrapper {
+      .aurthor-holder {
+        h1 {
+          font-size: 32px;
+          margin-bottom: 0.5rem;
+        }
+        h3 {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}

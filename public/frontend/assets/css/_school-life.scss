@@ -1,0 +1,14 @@
+.school-life-section {
+  .school-life-wrapper {
+    background-color: $card-color;
+    border-radius: 8px;
+    .school-life-desc {
+      .school-title {
+        color: $primary-color;
+      }
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+}

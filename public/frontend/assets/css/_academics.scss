@@ -1,0 +1,33 @@
+.academics-section {
+  .academics-wrapper {
+    .academics-item {
+      .academics-img {
+        width: 100%;
+        height: 25rem;
+        img {
+          object-fit: cover;
+        }
+      }
+      .academics-desc {
+        background-color: $card-color-2;
+        padding: 2.5rem;
+        height: 100%;
+        p {
+          font-weight: 500;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .academics-wrapper {
+      .academics-item {
+        .academics-img {
+          height: auto;
+        }
+        .academics-desc {
+          padding: 1.5rem;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,56 @@
+.btn-nav {
+  position: relative;
+  font-size: 14px;
+  font-weight: 600;
+  // padding: 8px 25px;
+  background-image: $grandent;
+  border: none;
+  overflow: hidden;
+  border-radius: 4px;
+  span {
+    position: relative;
+    z-index: 1;
+    color: $color-white;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $primary-color;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-110%);
+    transition: 0.3s all ease-in-out;
+  }
+  &:focus {
+    box-shadow: none;
+  }
+  &:hover {
+    color: $color-white;
+    &::before {
+      transform: translateX(0%);
+    }
+  }
+}
+.btn-sent {
+  background-color: $primary-color;
+  color: $color-white;
+  transition: 0.3s all ease-in-out;
+  &:hover {
+    background-color: $secondary-color;
+    color: $color-white;
+  }
+}
+.btn-read {
+  background-color: $secondary-color;
+  padding: 0.7rem 1.7rem;
+  color: $color-white;
+  border: none;
+  transition: 0.3s all ease-in-out;
+  &:hover {
+    background-color: $primary-color;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+      rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  }
+}

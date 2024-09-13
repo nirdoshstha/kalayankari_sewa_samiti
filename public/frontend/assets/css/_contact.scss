@@ -1,0 +1,185 @@
+.contact-section {
+  .contact-wrapper {
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    h1 {
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 2.5rem;
+    }
+    .contact-form {
+      background-color: $card-color-2;
+      .form-control {
+        border-radius: 0;
+        border-color: #4e4e4e57;
+        &:focus {
+          box-shadow: none;
+        }
+      }
+      .btn-nav {
+        padding: 0.8rem 1.5rem;
+        span {
+          font-size: 16px;
+        }
+      }
+      // dummby recaptcha
+
+      .box-container {
+        display: flex;
+        background-color: #f9f9f9;
+        border: 1px solid #d3d3d3;
+        border-radius: 3px;
+        width: 300px;
+        align-items: center;
+        padding: 10px 0px 10px 0px;
+        p {
+          margin: 0;
+        }
+        input[type="checkbox"] {
+          appearance: none;
+          width: 26px;
+          height: 26px;
+          border: 2px solid #c1c1c1;
+          margin: 0px 14px 0px 14px;
+          cursor: pointer;
+        }
+
+        input[type="checkbox"]:checked::before {
+          content: url(https://img.icons8.com/?size=20&id=27&format=png&color=1e5180);
+          display: block;
+          line-height: 20px;
+          padding: 0.05rem 0.6rem 0rem 0.05em;
+        }
+        .robot {
+          font-size: 14px;
+          font-family: "Roboto", sans-serif;
+        }
+        .reCaptcha-container {
+          margin-right: 10px;
+          text-align: center;
+          // line-height: 0.1rem;
+          .logo {
+            display: block;
+            margin-left: 65%;
+            .logo-text {
+              text-align: right;
+              font-size: 9px;
+              font-family: "Roboto", sans-serif;
+            }
+          }
+          .logo-text-tos {
+            display: block;
+            text-align: right;
+            font-size: 9px;
+            font-family: "Roboto", sans-serif;
+            margin-left: 80px;
+          }
+        }
+      }
+      // dummby recaptcha end
+    }
+    .contact-info {
+      background: $grandent;
+      height: 100%;
+      width: 100%;
+      h1 {
+        color: $color-white;
+      }
+      ul {
+        padding-left: 0;
+        li {
+          margin-bottom: 1rem;
+          display: flex;
+          align-items: center;
+          span {
+            min-width: 2.5rem;
+            height: 2.5rem;
+            background-color: $color-white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-right: 0.8rem;
+            i {
+              color: $primary-color;
+              font-size: 18px;
+            }
+          }
+          color: $color-white;
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+      .social-icons {
+        border-top: 1px solid $color-white;
+        padding: 1rem 0;
+        ul {
+          @include MarPad();
+          padding: 0;
+          li {
+            a {
+              width: 2rem;
+              height: 2rem;
+              margin-right: 1rem;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: 50%;
+              transition: 0.3s all ease-in-out;
+              color: $secondary-color;
+              font-size: 16px;
+              transition: 0.3s all ease-in-out;
+              background-color: $color-white;
+              &:hover {
+                color: $color-white;
+                background-color: $secondary-color;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    .contact-wrapper {
+      h1 {
+        font-size: 24px;
+      }
+      .contact-form {
+        .form-control {
+          font-size: 14px;
+        }
+      }
+      .contact-info {
+        ul {
+          li {
+            span {
+              margin-right: 0.4rem;
+              i {
+                font-size: 16px;
+              }
+            }
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 992px) {
+    .contact-wrapper {
+      .contact-form {
+        .form-control {
+          font-size: 14px;
+        }
+      }
+      .contact-info {
+        ul {
+          li {
+            min-width: 1.5rem;
+            height: 1.5rem;
+            margin-bottom: 2rem;
+          }
+        }
+      }
+    }
+  }
+}

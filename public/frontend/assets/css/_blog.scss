@@ -1,0 +1,106 @@
+.blog-section {
+  .blog-wrapper {
+    .blog-card {
+      border-radius: 12px;
+      background-color: $card-color-2;
+      overflow: hidden;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      transition: 0.3s all ease-in-out;
+      .blog-img {
+        width: 100%;
+        height: 15rem;
+        img {
+          object-fit: cover;
+        }
+      }
+      .blog-desc {
+        padding: 1.5rem;
+        h4 {
+          color: $color-black;
+          font-size: 22px;
+        }
+        p {
+          color: $color-black;
+          font-size: 14px;
+        }
+      }
+      &:hover {
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+          rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+      }
+    }
+  }
+  .single-blog-wrapper {
+    background-color: $card-color-2;
+    border-radius: 8px;
+    .blog-title {
+      h1 {
+        font-size: 38px;
+      }
+    }
+    .date {
+      font-size: 14px;
+      color: $primary-color;
+    }
+  }
+  .side-blogs {
+    background-color: $card-color-2;
+    padding: 1rem 0 0 0;
+    h3 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    ul {
+      @include MarPad();
+      padding: 0;
+      li {
+        .blog-item {
+          display: flex;
+          align-items: center;
+          border-bottom: 1px solid $color-black;
+          padding: 0.6rem;
+          transition: 0.3s all ease-in-out;
+          .blog-img {
+            min-width: 7rem;
+            height: 5rem;
+            img {
+              object-fit: cover;
+            }
+          }
+          .blog-desc {
+            padding-left: 0.5rem;
+            h5 {
+              font-size: 18px;
+              margin-bottom: 0;
+              color: $color-black;
+              transition: 0.3s all ease-in-out;
+            }
+            span {
+              font-size: 12px;
+              color: $color-black;
+              transition: 0.3s all ease-in-out;
+              i {
+                color: $primary-color;
+                transition: 0.3s all ease-in-out;
+              }
+            }
+          }
+          &:hover {
+            background-color: $primary-color;
+            .blog-desc {
+              h5 {
+                color: $color-white;
+              }
+              span {
+                color: $color-white;
+                i {
+                  color: $color-white;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

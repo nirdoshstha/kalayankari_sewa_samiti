@@ -1,0 +1,67 @@
+.notice-section {
+  .notice-wrapper {
+    .notice-item {
+      position: relative;
+      background-color: $card-color-2;
+      border-radius: 8px;
+      overflow: hidden;
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: $primary-color;
+        transition: 0.3s all ease-in-out;
+      }
+      .notice-img {
+        position: relative;
+        width: 10rem;
+        height: 10rem;
+        z-index: 1;
+        img {
+          object-fit: cover;
+        }
+      }
+      .notice-desc {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        h4,
+        span,
+        a,
+        i {
+          color: $color-black;
+          transition: 0.3s all ease-in-out;
+        }
+        h4 {
+          font-size: 20px;
+        }
+        span {
+          color: $primary-color;
+          font-size: 14px;
+        }
+      }
+      &:hover {
+        &::after {
+          width: 100%;
+        }
+        .notice-desc {
+          h4,
+          span,
+          a,
+          i {
+            color: $color-white;
+          }
+          .link {
+            i {
+              transform: translateX(10px);
+            }
+          }
+        }
+      }
+    }
+  }
+}

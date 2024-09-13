@@ -1,0 +1,21 @@
+.intro-section {
+  .intro-desc-wrapper {
+    padding: 1.5rem;
+    background-color: $card-color;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+      rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    margin-bottom: 4rem;
+    .intro-img {
+      width: 100%;
+      height: 25rem;
+      margin-bottom: 2rem;
+      img {
+        object-fit: cover;
+        object-position: top;
+      }
+    }
+  }
+  .user__section {
+    padding: 0;
+  }
+}
