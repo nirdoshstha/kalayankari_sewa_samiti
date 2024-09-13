@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\ImageController; 
 use App\Http\Controllers\backend\BlogController;
 use App\Http\Controllers\backend\TeamController;
@@ -34,8 +36,15 @@ use App\Http\Controllers\backend\ClassInformationController;
 */ 
 
 
+Route::get('link-storage',function(){
+    Artisan::call('storage:link');
+    return back();
+});
+
 
 Route::middleware(['auth','isAdmin'])->prefix('admin')->group(function(){
+
+
     
     Route::get('dashboard',[DashboardController::class,'index'])->name('dashboard.index');
     Route::resource('setting',SettingController::class);

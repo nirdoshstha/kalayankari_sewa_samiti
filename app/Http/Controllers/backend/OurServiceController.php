@@ -76,7 +76,7 @@ class OurServiceController extends BackendBaseController
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required|string|max:191', 
+            'title' => 'required|string|max:191|unique:our_services,title,'.$id  
         ]);
 
         $service = $this->model->find($id);

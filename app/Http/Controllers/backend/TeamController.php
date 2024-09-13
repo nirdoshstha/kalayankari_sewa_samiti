@@ -74,7 +74,8 @@ class TeamController extends BackendBaseController
     {
         $request->validate([
             'title' => 'required', 
-            'rank' =>'required|string|unique:teams,rank',  
+            // 'rank' =>'required|string|unique:teams,rank',  
+            'rank' => 'required|string|unique:teams,rank,'.$id  
         ]);
 
         $team = $this->model->find($id);

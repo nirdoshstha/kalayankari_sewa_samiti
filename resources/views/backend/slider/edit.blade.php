@@ -8,7 +8,7 @@
 @section('content')
 <div class="card">
     <div class="card-body">
-        <form action="{{ route($base_route . 'update',$data['album']->id) }}" method="POST"
+        <form action="{{ route($base_route . 'update',$data['slider']->id) }}" method="POST"
             enctype="multipart/form-data" class="row g-3 main_form">
             @csrf
             @method('PUT')
@@ -18,14 +18,14 @@
             <div class="col-md-6">
                 <div class="form-floating">
                     <input type="text" name="title" class="form-control title"
-                        value="{{ $data['album']->title ?? '' }}" id="floatingName" placeholder="Album Name">
+                        value="{{ $data['slider']->title ?? '' }}" id="floatingName" placeholder="Album Name">
                     <label for="floatingName">Album Name</label>
                 </div>
             </div>
             <div class="col-md-6 image">
                 <div class="form-floating d-flex justify-content-between">
-                    @if ($data['album']->image)
-                        <img src="{{ asset('storage/'.$data['album']->image) }}" class="previewImage" width="80">
+                    @if ($data['slider']->image)
+                        <img src="{{ asset('storage/'.$data['slider']->image) }}" class="previewImage" width="80">
                     @else
                         <img src="{{ asset('dummy_image.jpg') }}" class="previewImage" width="80">
                     @endif
@@ -56,8 +56,8 @@
         {{-- multiple image edit show delete 9th step --}}
         <div class="row p-3">
             <div class="col-md-12 d-flex align-content-start flex-wrap">
-                @isset($data['album']->images)
-                    @foreach ($data['album']->images as $image)
+                @isset($data['slider']->images)
+                    @foreach ($data['slider']->images as $image)
                         <div class="image p-2">
                             <img src="{{ image_path($image->url) }}" alt="" height="50px">
                         </div>

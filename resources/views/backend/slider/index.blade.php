@@ -72,8 +72,9 @@
                                         <a href="#" data-bs-toggle="modal"
                                             data-bs-target="#view-{{ $slider->id }}"><i
                                                 class="fa fa-eye fs-17 px-3 text-info"></i></a>
-                                        <a href="{{route($base_route.'edit',$slider->id)}}"><i
-                                                class="fa fa-edit fs-17 px-3 text-primary"></i></a>
+                                         <a href="#" data-bs-toggle="modal"
+                                        data-bs-target="#edit-{{ $slider->id }}"><i
+                                            class="fa fa-edit fs-17 px-3 text-info"></i></a>
                                         
                                             <div class="main-toggle-group d-sm-flex align-items-center"> 
                                                 <div class="toggle show_hide toggle-md toggle-{{ $slider->status == '0' ? 'success' : ''}} my-1 {{ $slider->status == '0' ? 'on' : 'off' }}" data-id="{{$slider->id}}">
