@@ -32,7 +32,8 @@ class DownloadController extends BackendBaseController
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required', 
+            'title' => 'required',
+            'image' =>'nullable|max:5120'
         ]);
 
         try {
@@ -73,6 +74,7 @@ class DownloadController extends BackendBaseController
     {
         $request->validate([
             'title' => 'required', 
+            'image' =>'nullable|max:5120'
         ]);
 
         $download = $this->model->find($id);

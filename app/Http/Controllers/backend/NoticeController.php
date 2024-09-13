@@ -33,6 +33,7 @@ class NoticeController extends BackendBaseController
     {
         $request->validate([
             'title' => 'required', 
+            'image' =>'nullable|max:2048',
             // 'rank' =>'required|string|unique:notices,rank',  
         ]);
 
@@ -74,6 +75,7 @@ class NoticeController extends BackendBaseController
     {
         $request->validate([
             'title' => 'required', 
+            'image' =>'nullable|max:2048',
             // 'rank' =>'required|string|unique:notices,rank',  
         ]);
 

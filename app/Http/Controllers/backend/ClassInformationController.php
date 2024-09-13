@@ -34,6 +34,7 @@ class ClassInformationController extends BackendBaseController
     {
         $request->validate([
             'title' => 'required|string|max:30',
+            'image' =>'nullable|max:2048',
             'description' => 'nullable|max:1500',
         ]);
 
@@ -74,6 +75,7 @@ class ClassInformationController extends BackendBaseController
     {
         $request->validate([
             'title' => 'required|string|max:30',
+            'image' =>'nullable|max:2048',
             'description' => 'nullable|max:1500',
         ]);
 

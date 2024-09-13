@@ -30,7 +30,10 @@ class SettingController extends BackendBaseController
         $request->validate([
             'email' =>'required',
             'phone' =>'required',
-            'address' =>'required'
+            'address' =>'required',
+            'image' =>'nullable|max:2048',
+            'logo' =>'nullable|max:2048',
+            'fav_icon' =>'nullable|max:2048',
         ]);
 
         $data = $request->except('logo','fav_icon','image');
@@ -63,7 +66,10 @@ class SettingController extends BackendBaseController
         $request->validate([
             'email' =>'required',
             'phone' =>'required',
-            'address' =>'required'
+            'address' =>'required',
+            'image' =>'nullable|max:2048',
+            'logo' =>'nullable|max:2048',
+            'fav_icon' =>'nullable|max:2048',
         ]);
 
         $setting = $this->model->first();

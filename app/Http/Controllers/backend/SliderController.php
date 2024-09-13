@@ -33,6 +33,7 @@ class SliderController extends BackendBaseController
     {
         $request->validate([
             'title' => 'required', 
+            'image' =>'nullable|max:2048', 
         ]);
 
         try {
@@ -73,6 +74,7 @@ class SliderController extends BackendBaseController
     {
         $request->validate([
             'title' => 'required', 
+            'image' =>'nullable|max:2048', 
         ]);
 
         $slider = $this->model->find($id);

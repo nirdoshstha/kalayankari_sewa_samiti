@@ -33,7 +33,8 @@ class TestimonialController extends BackendBaseController
     {
         $request->validate([
             'title' => 'required', 
-            // 'rank' =>'required|string|unique:testimonials,rank',  
+            // 'rank' =>'required|string|unique:testimonials,rank', 
+            'image' =>'nullable|max:2048',  
         ]);
 
         try {
@@ -75,6 +76,7 @@ class TestimonialController extends BackendBaseController
         $request->validate([
             'title' => 'required', 
             // 'rank' =>'required|string|unique:testimonials,rank',  
+            'image' =>'nullable|max:2048', 
         ]);
 
         $testimonial = $this->model->find($id);

@@ -37,6 +37,7 @@ class OurServiceController extends BackendBaseController
          
         $request->validate([
             'title' => 'required|string|max:191|unique:our_services,title',  
+            'image' =>'nullable|max:2048',
         ]);
 
         try {
@@ -76,7 +77,8 @@ class OurServiceController extends BackendBaseController
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required|string|max:191|unique:our_services,title,'.$id  
+            'title' => 'required|string|max:191|unique:our_services,title,'.$id,
+            'image' =>'nullable|max:2048',
         ]);
 
         $service = $this->model->find($id);

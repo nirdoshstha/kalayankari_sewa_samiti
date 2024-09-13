@@ -33,6 +33,7 @@ class BlogController extends BackendBaseController
     {
         $request->validate([
             'title' => 'required|string|unique:blogs,title', 
+            'image' =>'nullable|max:2048'
             // 'rank' =>'required|string|unique:blogs,rank',  
         ]);
 
@@ -74,7 +75,8 @@ class BlogController extends BackendBaseController
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required|string|unique:blogs,title,'.$id  
+            'title' => 'required|string|unique:blogs,title,'.$id ,
+            'image' =>'nullable|max:2048'
         ]);
 
         $blog = $this->model->find($id);

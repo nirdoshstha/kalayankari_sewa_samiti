@@ -34,6 +34,7 @@ class TeamController extends BackendBaseController
         $request->validate([
             'title' => 'required', 
             'rank' =>'required|string|unique:teams,rank',  
+            'image' =>'nullable|max:2048', 
         ]);
 
         try {
@@ -73,9 +74,9 @@ class TeamController extends BackendBaseController
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required', 
-            // 'rank' =>'required|string|unique:teams,rank',  
-            'rank' => 'required|string|unique:teams,rank,'.$id  
+            'title' => 'required',   
+            'rank' => 'required|string|unique:teams,rank,'.$id ,
+            'image' =>'nullable|max:2048', 
         ]);
 
         $team = $this->model->find($id);
