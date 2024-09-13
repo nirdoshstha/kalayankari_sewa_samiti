@@ -33,7 +33,7 @@ class AwardController extends BackendBaseController
     {
         $request->validate([
             'title' => 'required', 
-            'image' =>'nullable|max:2048'
+            'image' =>'nullable|max:3072'
         ]);
 
         try {
@@ -74,7 +74,7 @@ class AwardController extends BackendBaseController
     {
         $request->validate([
             'title' => 'required', 
-            'image' =>'nullable|max:2048'
+            'image' =>'nullable|max:3072'
         ]);
 
         $award = $this->model->find($id);
