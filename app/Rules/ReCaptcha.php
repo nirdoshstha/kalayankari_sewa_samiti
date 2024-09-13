@@ -21,7 +21,7 @@ class ReCaptcha implements ValidationRule
         ]);
   
         if (!($response->json()["success"] ?? false)) {
-              $fail('The google recaptcha is required.');
+              $fail('Token mismatch, Try again.');
         }
 
     }

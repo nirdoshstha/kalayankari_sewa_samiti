@@ -51,7 +51,7 @@ Contact Us
                                 <h1 class="contact-title">Get in Touch with us</h1>
                                 <form action="{{ route('frontend.send_message') }}" method="POST" class="main_form" id="contactUSForm" >
                                     @csrf
-                                   
+                                    <input type="hidden" name="type" value="contact">
                                     <div class="row">
                                         <div class="col-lg-6 col-12">
                                             <div class="form-floating mb-3">

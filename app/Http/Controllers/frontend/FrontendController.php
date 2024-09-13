@@ -111,7 +111,7 @@ class FrontendController extends Controller
             'name' => 'required|string|max:55',
             'email' => 'required|email',
             'message' => 'required|max:500', 
-            // 'g-recaptcha-response' => ['required', new ReCaptcha]
+            'g-recaptcha-response' => ['required', new ReCaptcha]
 
         ]);
 
@@ -150,7 +150,7 @@ class FrontendController extends Controller
             'phone' =>'required',
             'father_name' =>'required',
             'mother_name' =>'required',
-            //  'g-recaptcha-response' => ['required', new ReCaptcha]
+             'g-recaptcha-response' => ['required', new ReCaptcha]
         ]);
         try{
             $data = $request->except('image');
