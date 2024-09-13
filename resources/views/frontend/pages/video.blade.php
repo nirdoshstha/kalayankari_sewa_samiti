@@ -1,6 +1,8 @@
 @extends('frontend.layouts.master')
 
-@section('title'){{$data['video']->title ?? ''}}@endsection
+@section('title') 
+Video Gallery
+@endsection
 
 @section('seo_keyword'){{$data['video']->seo_keyword ?? ''}}@endsection 
 

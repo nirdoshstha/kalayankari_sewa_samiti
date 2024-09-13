@@ -1,6 +1,8 @@
 @extends('frontend.layouts.master')
 
-@section('title'){{$data['album']->title ?? ''}}@endsection
+@section('title')
+Album Gallery
+@endsection
 
 @section('seo_keyword'){{$data['album']->seo_keyword ?? ''}}@endsection 
 
