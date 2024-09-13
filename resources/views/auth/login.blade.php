@@ -42,7 +42,9 @@
 				    <!-- CONTAINER OPEN -->
 					<div class="col col-login mx-auto text-center">
 						<a href="#" class="text-center">
-							<img src="{{asset('logo2.png')}}" class="header-brand-img" alt="">
+						@if(setting()?->logo)
+							<img src="{{asset('storage/'.setting()->logo)}}" class="header-brand-img" alt="">
+						@endif
 						</a>
 					</div>
 					<div class="container-login100">
@@ -85,7 +87,7 @@
 									</div> --}}
 									<div class="container-login100-form-btn">
 										<button type="submit" class="login100-form-btn btn-info">
-											{{__('messages.submit')}}
+											Submit
                                         </button>
                                         
 									</div>
