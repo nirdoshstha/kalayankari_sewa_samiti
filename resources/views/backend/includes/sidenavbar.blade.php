@@ -43,7 +43,7 @@
                 </li>
                
                  <li class="slide">
-                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="{{route('service.index')}}">
+                    <a class="side-menu__item has-link @if(\Route::is('service.index*')) active @endif" data-bs-toggle="slide" href="{{route('service.index')}}">
                         <i class="fa fa-file-o fs-6"></i>
                         <span class="side-menu__label mx-2">Create Page</span>
                     </a>
@@ -51,7 +51,7 @@
                 
                
                  <li class="slide">
-                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="{{route('facility.index')}}">
+                    <a class="side-menu__item has-link @if(\Route::is('facility.index*')) active @endif" data-bs-toggle="slide" href="{{route('facility.index')}}">
                         <i class="fa fa-clipboard fs-6"></i>
                         <span class="side-menu__label mx-2">Facility</span>
                     </a>
@@ -82,14 +82,14 @@
                 </li>
 
                 <li class="slide">
-                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="{{route('download.index')}}">
+                    <a class="side-menu__item has-link @if(\Route::is('download.index*')) active @endif" data-bs-toggle="slide" href="{{route('download.index')}}">
                         <i class="fa fa-download fs-6"></i>
                         <span class="side-menu__label mx-2">Download</span>
                     </a>
                 </li>
 
                 <li class="slide">
-                    <a class="side-menu__item has-link" data-bs-toggle="slide" href="{{route('blog.index')}}">
+                    <a class="side-menu__item has-link @if(\Route::is('blog.index*')) active @endif" data-bs-toggle="slide" href="{{route('blog.index')}}">
                         <i class="fa fa-clipboard fs-6"></i>
                         <span class="side-menu__label mx-2">Blog</span>
                     </a>
