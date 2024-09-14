@@ -7,6 +7,7 @@ use App\Traits\ImageTrait;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\AdmissionForm;
 
 class ContactUsController extends BackendBaseController
 {
@@ -109,6 +110,23 @@ class ContactUsController extends BackendBaseController
     public function applyContact(){
         $data['contacts'] = Contact::where('type','apply')->latest()->get();
         return view($this->__loadDataToView($this->view_path . 'apply'), compact('data'));
+
+    }
+
+    public function applyAdmission(){
+        $data['admissions'] = AdmissionForm::latest()->get();
+        return view($this->__loadDataToView($this->view_path . 'admission'), compact('data'));
+    }
+
+    public function deleteAdmission($id){
+        $admission = AdmissionForm::find($id);
+        deleteImage($admission->image);
+        $admission->delete();
+        return response()->json([
+            'success_message' => 'Admission Form Deleted Successfully',
+            'url' => route('admission.index'),
+            'reload' => true
+        ]);
 
     }
     

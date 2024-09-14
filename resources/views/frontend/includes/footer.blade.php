@@ -79,6 +79,7 @@
                                 <li><a href="{{route('frontend.blog')}}">Blog</a></li>
                                 <li><a href="{{route('frontend.notices')}}">Notices</a></li>
                                 <li><a href="{{route('frontend.contact')}}">Contact Us</a></li>
+                                <li><a href="{{route('login')}}">Login</a></li>
                             </ul>
                         </div>
                     </div>

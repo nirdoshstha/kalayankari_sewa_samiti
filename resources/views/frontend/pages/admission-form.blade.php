@@ -157,8 +157,8 @@ Admission Form
                                 <div class="col-sm-4">
                                     <div class="mb-2">
                                         <label for="age-form" class="form-label mb-0">Age:</label>
-                                        <input type="text" class="form-control" id="age-form" name="age" value="{{old('age')}}"
-                                            aria-describedby="" readonly>
+                                        <input type="text" class="form-control" name="age" value="{{old('age')}}"
+                                            aria-describedby="">
                                     </div>
                                 </div>
                             </div>

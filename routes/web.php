@@ -100,6 +100,10 @@ Route::middleware(['auth','isAdmin'])->prefix('admin')->group(function(){
     //Contact U
     Route::resource('contact',ContactUsController::class);
     Route::get('contact-apply',[ContactUsController::class,'applyContact'])->name('apply.index');
+    Route::get('admission-apply',[ContactUsController::class,'applyAdmission'])->name('admission.index');
+    Route::delete('admission-delete/{id}',[ContactUsController::class,'deleteAdmission'])->name('admission.delete');
+
+
 
     //Our Services
     Route::resource('service',OurServiceController::class)->except('show');

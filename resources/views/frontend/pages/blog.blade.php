@@ -5,7 +5,7 @@ Blog
 @endsection
 
 @section('content')
-    @if(!empty($data['blog']->image))
+    @if(!empty($data['blog']))
         <div class="breadcrumb-banner"
             style="background-image: url('{{asset('storage/'.$data['blog']->image)}}');background-position: center; background-repeat: no-repeat; background-size: cover;">
             <div class="container">

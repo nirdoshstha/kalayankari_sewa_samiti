@@ -95,14 +95,15 @@
                     </a>
                 </li>
 
-                 <li class="slide @if(\Route::is('contact.index*','video.index*','apply.index*')) is-expanded @endif">
-                    <a class="side-menu__item @if(\Route::is('contact.index*','video.index*','apply.index*')) active @endif" data-bs-toggle="slide" href="#">
+                 <li class="slide @if(\Route::is('contact.index*','admission.index*','apply.index*')) is-expanded @endif">
+                    <a class="side-menu__item @if(\Route::is('contact.index*','admission.index*','apply.index*')) active @endif" data-bs-toggle="slide" href="#">
                         <i class="fa fa-file-image-o fs-6"></i>
                         <span class="side-menu__label mx-2">Contact Us</span><i class="angle fa fa-angle-right"></i></a>
-                    <ul class="slide-menu @if(\Route::is('album.index*','video.index*')) active @endif">
+                    <ul class="slide-menu @if(\Route::is('contact.index*','contact.index*','admission.index*')) active @endif">
                         <li class="side-menu-label1"><a href="javascript:void(0)">Utilities</a></li>
                         <li><a href="{{route('contact.index')}}" class="slide-item @if(\Route::is('contact.index*')) active @endif"><i class="fa fa-file-image-o fs-6  mx-2"></i>Contact</a></li>
                         <li><a href="{{route('apply.index')}}" class="slide-item @if(\Route::is('apply.index*')) active @endif"><i class="fa fa-file-video-o fs-6  mx-2"></i>Apply</a></li>
+                        <li><a href="{{route('admission.index')}}" class="slide-item @if(\Route::is('admission.index*')) active @endif"><i class="fa fa-file-video-o fs-6  mx-2"></i>Admission</a></li>
                        
                     </ul>
                 </li>
