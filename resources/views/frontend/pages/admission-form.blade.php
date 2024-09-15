@@ -22,8 +22,8 @@ Admission Form
                                 <div class="col-md-8">
                                     <div class="school__details text-center mb-4">
                                         <h2 class="mb-0"> Care English Boarding School </h2>
-                                        <p class="mb-0">Bijay Chowk, Gaushala, Kathmandu 9, Nepal</p>
-                                        <p class="mb-0"> cebs2080@gmail.com </p>
+                                        <p class="mb-0">{{setting()?->address ?? ''}}</p>
+                                        <p class="mb-0"> {{setting()?->email ?? ''}}</p>
                                     </div>
                                 </div>
                                 <div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 input-image">
@@ -91,7 +91,7 @@ Admission Form
                                         <label for="text-form1" class="form-label mb-0">Current Grade <span
                                                 class="text-danger">*</span></label>
                                         <input type="text" class="form-control" name="current_grade" value="{{old('current_grade')}}"
-                                            id="text-form1" aria-describedby="emailHelp" required="">
+                                            id="text-form1" aria-describedby="emailHelp" required>
                                         <span class="text-danger">
                                         </span>
                                     </div>
@@ -100,9 +100,9 @@ Admission Form
                             <div class="row align-items-center">
                                 <div class="col-sm-4">
                                     <div class="mb-2">
-                                        <label for="select-form2" class="form-label mb-0">Gender:</label>
+                                        <label for="select-form2" class="form-label mb-0">Gender:  <span class="text-danger">*</span></label>
                                         <select name="gender" value="{{old('gender')}}" class="form-select" id="select-form2"
-                                            required="">
+                                            required>
                                             <option value="">--Please Select Gender--</option>
                                             <option value="male" class="bg-white">Male</option>
                                             <option value="female" class="bg-white">Female</option>
@@ -129,9 +129,9 @@ Admission Form
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="mb-2">
-                                        <label for="text-form3" class="form-label mb-0">Email:</label>
+                                        <label for="text-form3" class="form-label mb-0">Email: <span class="text-danger">*</span></label>
                                         <input type="email" value="{{old('email')}}" class="form-control" id="text-form3"
-                                            aria-describedby="emailHelp" name="email" required="">
+                                            aria-describedby="emailHelp" name="email" required>
                                     </div>
                                 </div>
                             </div>
@@ -168,7 +168,7 @@ Admission Form
                                         <label for="text-form6" class="form-label mb-0">Address <span
                                                 class="text-danger">*</span></label>
                                         <input type="text" name="address" value="{{old('address')}}" class="form-control"
-                                            id="text-form6" aria-describedby="emailHelp" required="">
+                                            id="text-form6" aria-describedby="emailHelp" required>
                                         <span class="text-danger">
                                         </span>
                                     </div>
@@ -178,7 +178,7 @@ Admission Form
                                         <label for="text-form7" class="form-label mb-0">Phone <span
                                                 class="text-danger">*</span></label>
                                         <input type="text" name="phone" value="{{old('phone')}}" class="form-control"
-                                            id="text-form7" aria-describedby="emailHelp" required="">
+                                            id="text-form7" aria-describedby="emailHelp" required>
                                         <span class="text-danger">
                                         </span>
                                     </div>
@@ -193,7 +193,7 @@ Admission Form
                                         <label for="text-form8" class="form-label mb-0">Father's Name <span
                                                 class="text-danger">*</span></label>
                                         <input type="text" name="father_name" value="{{old('father_name')}}" class="form-control"
-                                            id="text-form8" aria-describedby="emailHelp" required="">
+                                            id="text-form8" aria-describedby="emailHelp" required>
                                         <span class="text-danger">
                                         </span>
                                     </div>
@@ -229,7 +229,7 @@ Admission Form
                                         <label for="text-form13" class="form-label mb-0">Mother's Name <span
                                                 class="text-danger">*</span></label>
                                         <input name="mother_name" type="text" value="{{old('mother_name')}}" class="form-control"
-                                            id="text-form13" aria-describedby="emailHelp" required="">
+                                            id="text-form13" aria-describedby="emailHelp" required>
                                         <span class="text-danger">
                                         </span>
                                     </div>

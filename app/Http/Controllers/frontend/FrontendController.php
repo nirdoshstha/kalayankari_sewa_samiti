@@ -171,6 +171,7 @@ class FrontendController extends Controller
             return response()->json([
                 'error_message' =>'Something Went Wrong !!',
                 'url' => route('frontend.admission_form'),
+                'reload' =>true
             ]);
         }
     }
