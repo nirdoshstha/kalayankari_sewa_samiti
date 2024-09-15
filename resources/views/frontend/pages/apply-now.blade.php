@@ -16,11 +16,11 @@
                     <input type="hidden" name="type" value="apply">
                     <div class="row">
                         <div class="col-12 mb-3">
-                            <input type="text" name="name" class="form-control" id="input1" placeholder="Name">
+                            <input type="text" name="name" class="form-control" id="input1" placeholder="Name" required>
                             <span class="text-danger">{{$errors->first('name')}}</span>
                         </div>
                         <div class="col-6 mb-3">
-                            <input type="email" name="email" class="form-control" id="input2" placeholder="Email">
+                            <input type="email" name="email" class="form-control" id="input2" placeholder="Email" required>
                         </div>
                         <div class="col-6 mb-3">
                             <input type="text" name="phone" class="form-control" id="input3" placeholder="Phone">
@@ -36,7 +36,7 @@
                         <input type="text" name="subject" class="form-control" id="input7" placeholder="Class">
                     </div>
                     <div class="col-12 mb-3">
-                        <textarea name="message" class="form-control" id="input6" rows="3" placeholder="Message"></textarea>
+                        <textarea name="message" class="form-control" id="input6" rows="3" placeholder="Message" required></textarea>
                     </div>
             </div>
             <div class="text-center">

@@ -193,7 +193,7 @@ function errorAlert(title = 'Failed!') {
  $(document).ready(() => {
 
  grecaptcha.ready(function() {
-            grecaptcha.execute("{{ env('GOOGLE_RECAPTCHA_KEY') }}", {action: 'subscribe_newsletter'}).then(function(token) {
+            grecaptcha.execute("{{ env('GOOGLE_RECAPTCHA_KEY') }}", {action: 'submit'}).then(function(token) {
                 $('.main_form').prepend('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
             });
         });
