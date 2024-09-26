@@ -48,7 +48,7 @@
                         <div class="social-icons d-flex justify-content-start">
                             <ul class="d-flex">
                                  
-                                 @isset(setting()?->facebook)
+                                @isset(setting()?->facebook)
                                     <li><a href="{{setting()?->facebook }}"> <i class="fa-brands fa-facebook-f"></i></a></li>
                                 @endisset
                                 @isset(setting()?->instagram)

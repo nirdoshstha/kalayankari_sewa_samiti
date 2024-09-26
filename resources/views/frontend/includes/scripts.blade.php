@@ -124,6 +124,7 @@
             error: function (err) {
                 button.prop("disabled", false).html(`<i class="fa fa-close"></i> Error`);
                 $('span.text-danger').remove();
+                location.reload();
                 
                 if (err.responseJSON.message) {
                     errorAlert(err.responseJSON.message);
