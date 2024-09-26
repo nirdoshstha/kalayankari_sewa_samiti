@@ -31,8 +31,7 @@ class SliderController extends BackendBaseController
 
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required', 
+        $request->validate([ 
             'image' =>'nullable|max:2048', 
         ]);
 
@@ -72,8 +71,7 @@ class SliderController extends BackendBaseController
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'title' => 'required', 
+        $request->validate([  
             'image' =>'nullable|max:2048', 
         ]);
 
