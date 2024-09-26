@@ -130,6 +130,7 @@ class FrontendController extends Controller
             return response()->json([
                 'error_message' =>'Something went wrong.',
                 'url' =>route('frontend.contact'),
+                'reload' =>true,
             ]);
             // return back()->with('status','Somethig went wrong.');
         }
