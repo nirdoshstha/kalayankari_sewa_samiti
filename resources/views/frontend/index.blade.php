@@ -260,7 +260,9 @@
                                                         <h4>{{ $notice->title }}</h4>
                                                         <span class="date"><i class="fa-solid fa-calendar-days"></i>
                                                             {{ $notice->created_at->format('Y-m-d') }}</span>
-                                                        <a href="#" class="link mt-2">Read More <i
+                                                        <a href="#" class="link mt-2 notice_view"
+                                                            data-id="{{ $notice->id }}" data-bs-toggle="modal"
+                                                            data-bs-target="#noticeModal">Read More <i
                                                                 class="fa-solid fa-angles-right"></i></a>
                                                     </div>
                                                 </div>
