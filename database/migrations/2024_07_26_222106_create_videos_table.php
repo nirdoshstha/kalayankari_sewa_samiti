@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('type');
             $table->string('title');
-            $table->string('sub_title');
+            $table->string('sub_title')->nullable();
             $table->string('image')->nullable();
             $table->string('video_link')->nullable();
             $table->mediumText('description')->nullable();
