@@ -29,6 +29,12 @@
                                   </li>
                               @endisset
 
+                              @isset(setting()?->whatsapp)
+                                  <li><a class="dropdown-item pt-0 text-dark" href="tel: {{ setting()?->whatsapp ?? '' }}">
+                                          <i class="fa-brands fa-whatsapp"></i>&nbsp; {{ setting()?->whatsapp ?? '' }}</a>
+                                  </li>
+                              @endisset
+
                           </ul>
                           @isset(setting()?->mobile)
                               <a href="mailto: {{ setting()?->email ?? '' }}">
