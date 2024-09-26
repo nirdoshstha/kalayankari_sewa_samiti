@@ -90,7 +90,7 @@
                                     </div>
                                     <div class="card-desc">
                                         <h4>{{ $award->title }}</h4>
-                                        <p>{!! $award->description !!}</p>
+                                        <p>{!! Str::limit($award->description, 220) !!}</p>
                                     </div>
                                 </div>
                             </div>
