@@ -305,7 +305,7 @@
                                         class="fa-solid fa-angles-right"></i></a>
                             </div>
                             <div class="blog-card d-flex flex-column">
-                                <iframe width="100%" height="310"
+                                <iframe width="100%" height="350"
                                     src="{{ video()?->video_link ?? 'https://www.youtube.com/embed/5kGBxzIkyXc?si=YE8JpRePHvqWNlRr' }}"
                                     title="YouTube video player" frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
