@@ -414,40 +414,40 @@
                             enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="type" value="post">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-floating">
                                     <input type="text" name="title" class="form-control title" value=""
                                         id="floatingName" placeholder="Album Name">
                                     <label for="floatingName">Video Title</label>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <div class="form-floating">
                                     <input type="text" name="sub_title" class="form-control title" value=""
                                         id="floatingName" placeholder="Album Name">
                                     <label for="floatingName">Video Subtitle</label>
                                 </div>
-                            </div>
+                            </div> --}}
 
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <label for="" class="form-label">Image</label>
                                 <div class="form-group">
                                     <input name="image" class="form-control mt-3" type="file">
                                 </div>
-                            </div>
-                            <div class="col-md-6">
+                            </div> --}}
+                            <div class="col-md-12">
                                 <div class="form-floating">
                                     <input type="text" name="video_link" class="form-control title" value=""
                                         id="floatingName" placeholder="Album Name">
                                     <label for="floatingName">Video Link</label>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            {{-- <div class="col-md-12">
                                 <div class="form-floating">
                                     <textarea name="description" class="form-control" style="height: 100px;"></textarea>
                                     <label for="floatingName">Video Description</label>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="text-center">
                                 <button type="submit" class="btn btn-info"><i class="fa fa-plus-circle fs-6"></i>

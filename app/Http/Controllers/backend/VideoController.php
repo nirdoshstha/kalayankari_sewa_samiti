@@ -25,16 +25,14 @@ class VideoController extends BackendBaseController
     {
         $data = [];
         $data['videos'] = $this->model->where('type', 'post')->latest()->get();
-        $data['video'] = $this->model->where('type', 'page')->first();
-        $data['video-slider'] = $this->model->where('type', 'video-slider')->first();
+        $data['video'] = $this->model->where('type', 'page')->first(); 
         return view($this->__loadDataToView($this->view_path . 'index'), compact('data'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|string|max:30',
-            'description' => 'nullable|max:1500',
+            'title' => 'required|max:255', 
         ]);
 
         try {
@@ -75,8 +73,7 @@ class VideoController extends BackendBaseController
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title' => 'required|string|max:30',
-            'description' => 'nullable|max:500',
+            'title' => 'required|max:255',  
         ]);
 
         $video = $this->model->find($id);
@@ -134,12 +131,13 @@ class VideoController extends BackendBaseController
             return response()->json([
                 'success_message' => 'Video Deleted Successfully',
                 'url' => route($this->base_route . 'index'),
-                'reload' => false
+                'reload' => true
             ]);
         } catch (\Exception $e) {
             return response()->json([
                 'error_message' => 'Something Went Wrong',
                 'url' => route($this->base_route . 'index'),
+                'reload' => true
             ]);
         }
     }
