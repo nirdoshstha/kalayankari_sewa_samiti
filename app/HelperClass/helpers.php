@@ -9,6 +9,7 @@ use App\Models\Contact;
 use App\Models\Setting;
 use App\Models\Download;
 use App\Models\OurService;
+use App\Models\PopupModal;
 use App\Models\Testimonial;
 use Illuminate\Support\Facades\File;
 
@@ -34,6 +35,13 @@ if (!function_exists('setting')) {
     {
         $setting = Setting::first();
         return $setting;
+    }
+}
+
+if(!function_exists('modals')){
+    function modals(){
+        $modal = PopupModal::active()->get();
+        return $modal;
     }
 }
 

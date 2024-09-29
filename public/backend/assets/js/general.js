@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
- 
+
     $(document).on("submit", "form.main_form", function (e) {
         e.preventDefault();
         let button = $(this).find("button[type=submit]");
@@ -24,25 +24,26 @@ $(document).ready(function () {
             processData: false,
             success: function (res) {
                 $('span.text-danger').remove();
-                
+
                 button.prop("disabled", false).html(`<i class="fas fa-check"></i> Saved`);
                 if (res.success_message) {
                     successAlert(res.success_message)
-                   
-                    $('#success_message').text(res.success_message);
-                     
-                     $(".main_form").find('input,textarea').val(''); 
 
-                    if(res.reload==true){
+                    $('#success_message').text(res.success_message);
+
+                    $(".main_form").find('input,textarea').val('');
+
+                    if (res.reload == true) {
                         window.location.href = res.url;
                     }
-                      
+
                     // $('.modal').each(function(){
                     //     $(this).modal('hide');
                     // });
                     // location.reload();
 
-                } if(res.error_message) {
+                }
+                if (res.error_message) {
                     errorAlert(res.error_message)
                     window.location.href = res.url;
                 }
@@ -50,13 +51,13 @@ $(document).ready(function () {
             error: function (err) {
                 button.prop("disabled", false).html(`<i class="fa fa-close"></i> Error`);
                 $('span.text-danger').remove();
-                
+
                 if (err.responseJSON.message) {
                     errorAlert(err.responseJSON.message);
-                    $('#error_msg').text(err.responseJSON.message);//to show error message in page.
+                    $('#error_msg').text(err.responseJSON.message); //to show error message in page.
                 }
                 if (res.error_message) {
-                    window.location.href = res.url;//after
+                    window.location.href = res.url; //after
                 }
                 if (err.responseJSON.errors) {
                     $.each(err.responseJSON.errors, function (key, value) {
@@ -84,7 +85,7 @@ $(document).ready(function () {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes'
         }).then((result) => {
-             
+
             if (result.isConfirmed) {
                 form.submit();
                 $(this).closest("tr").remove();

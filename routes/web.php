@@ -20,6 +20,7 @@ use App\Http\Controllers\backend\ContactUsController;
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\frontend\FrontendController;
 use App\Http\Controllers\backend\OurServiceController;
+use App\Http\Controllers\backend\PopupModalController;
 use App\Http\Controllers\backend\AdminCreateController;
 use App\Http\Controllers\backend\TestimonialController;
 use App\Http\Controllers\backend\ClassInformationController;
@@ -52,6 +53,11 @@ Route::middleware(['auth','isAdmin'])->prefix('admin')->group(function(){
     Route::post('password-changed',[ProfileController::class,'passwordChanged'])->name('user.password_changed');
 
     //Home
+
+    //Popup Modal
+    Route::resource('modal',PopupModalController::class)->names('modal');
+    Route::get('modal-status',[PopupModalController::class,'modalStatus'])->name('modal.status');
+
     //Slider
     Route::resource('slider',SliderController::class);
     Route::get('slider-status',[SliderController::class,'statusChanged'])->name('slider.status');
@@ -128,5 +134,3 @@ Route::middleware('auth','isSuperAdmin')->group(function(){
 });
 
 Auth::routes();
-
-

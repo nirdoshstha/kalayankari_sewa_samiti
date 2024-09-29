@@ -13,6 +13,9 @@
 @endsection
 
 @section('content')
+
+    @include('frontend.includes.modal')
+
     <section class="homepage-content-wrapper">
         @if (!is_null($data['introduction']))
             <div class="about-section">
@@ -394,6 +397,11 @@
 @endsection
 
 @push('js')
+    <script type="text/javascript">
+        $(window).on('load', function() {
+            $('.myModal').modal('show');
+        });
+    </script>
     <script>
         $(document).ready(function() {
             $('.notice_view').on('click', function() {
