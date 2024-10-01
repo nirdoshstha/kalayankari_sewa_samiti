@@ -159,9 +159,9 @@ class FacilityController extends BackendBaseController
             $facility->delete();
 
             return response()->json([
-                'success_message' => 'Album/Multiple images Deleted Successfully',
+                'success_message' => 'Facility Deleted Successfully',
                 'url' => route($this->base_route . 'index'),
-                'reload' => false
+                'reload' => true
             ]);
            
            

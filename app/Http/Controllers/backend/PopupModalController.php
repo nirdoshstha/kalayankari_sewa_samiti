@@ -112,7 +112,8 @@ class PopupModalController extends BackendBaseController
             $modal->delete();
             return response()->json([
                 'success_message' => $this->panel . ' Deleted Successfully !!!',
-                'url' => route($this->base_route . 'index')
+                'url' => route($this->base_route . 'index'),
+                'reload' =>true
             ]);
         } catch (\Exception $e) {
             // Session()->flash('error_message','Something went wrong..');

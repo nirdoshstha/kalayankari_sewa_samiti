@@ -134,7 +134,7 @@ class TeamController extends BackendBaseController
             return response()->json([
                 'success_message' => 'Team Deleted Successfully',
                 'url' => route($this->base_route . 'index'),
-                'reload' => false
+                'reload' => true
             ]);
         } catch (\Exception $e) {
             return response()->json([

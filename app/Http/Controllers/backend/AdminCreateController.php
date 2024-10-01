@@ -29,6 +29,7 @@ class AdminCreateController extends BackendBaseController
         $request->validate([
             'username' =>'required',
             'name' =>'required',
+            'email' =>'required|unique:users,email,except,id'
         ]);
         try{
              $data = $request->all();
@@ -63,6 +64,12 @@ class AdminCreateController extends BackendBaseController
     }
 
     public function update(Request $request, $id){
+        $request->validate([
+            'username' =>'required',
+            'name' =>'required',
+            'email' =>'required|unique:users,email,except,id'
+        ]);
+        
         $user = $this->model->find($id);
         $user->update($request->all() +[
             'name' =>$request->name,
@@ -97,7 +104,7 @@ class AdminCreateController extends BackendBaseController
         $update_qty = $this->model->where('user_role','1')->count();
         return response()->json([
             'success_message' =>'Admin Deleted Successfully', 
-            'update_qty' =>$update_qty
+            // 'update_qty' =>$update_qty
         ]);
     }
 }

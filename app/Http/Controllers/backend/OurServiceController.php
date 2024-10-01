@@ -135,7 +135,7 @@ class OurServiceController extends BackendBaseController
                 return response()->json([
                     'error_message' => 'Pls delete child data first',
                     'url' => route($this->base_route . 'index'),
-                    'reload' => false
+                    'reload' => true
                 ]);
             } else {
                 deleteImage($service->image);

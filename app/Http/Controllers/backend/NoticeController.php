@@ -134,7 +134,7 @@ class NoticeController extends BackendBaseController
             return response()->json([
                 'success_message' => 'Notice Deleted Successfully',
                 'url' => route($this->base_route . 'index'),
-                'reload' => false
+                'reload' => true
             ]);
         } catch (\Exception $e) {
             return response()->json([

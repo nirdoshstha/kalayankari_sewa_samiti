@@ -62,7 +62,8 @@ class ProfileController extends BackendBaseController
            
            return response()->json([
             'success_message' =>'Profile Updated Successfully !!',
-            'url' =>route($this->base_route.'index')
+            'url' =>route($this->base_route.'index'),
+            'reload' =>true
         ]);
         }
         else{ 
@@ -76,7 +77,8 @@ class ProfileController extends BackendBaseController
             ]);
             return response()->json([
                 'success_message' =>'Profile Created Successfully !!',
-                'url' =>route($this->base_route.'index')
+                'url' =>route($this->base_route.'index'),
+                'reload' =>true
             ]);
         } 
        
@@ -95,7 +97,8 @@ class ProfileController extends BackendBaseController
 
         return response()->json([
             'success_message' =>'Password Changed Successfully',
-            'url' =>route($this->base_route.'index')
+            'url' =>route($this->base_route.'index'),
+            'reload' =>true
         ]);
         
         

@@ -132,7 +132,7 @@ class DownloadController extends BackendBaseController
             return response()->json([
                 'success_message' => 'Download Deleted Successfully',
                 'url' => route($this->base_route . 'index'),
-                'reload' => false
+                'reload' => true
             ]);
         } catch (\Exception $e) {
             return response()->json([
