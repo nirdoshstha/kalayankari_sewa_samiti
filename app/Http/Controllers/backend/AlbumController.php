@@ -148,7 +148,7 @@ class AlbumController extends BackendBaseController
                 //      $image->delete();
                 // }
                 return response()->json([
-                    'success_message' => 'You cant delete it, pls delete child data first !!!',
+                    'error_message' => 'You cant delete it, pls delete child data first !!!',
                     'url' => route($this->base_route . 'index'),
                     'reload' =>true
                 ]);
@@ -161,7 +161,7 @@ class AlbumController extends BackendBaseController
             return response()->json([
                 'success_message' => 'Album/Multiple images Deleted Successfully',
                 'url' => route($this->base_route . 'index'),
-                'reload' => false
+                'reload' => true
             ]);
            
            
@@ -169,6 +169,7 @@ class AlbumController extends BackendBaseController
             return response()->json([
                 'error_message' => 'Something Went Wrong',
                 'url' => route($this->base_route . 'index'),
+                'reload' =>true
             ]);
         }
     }
