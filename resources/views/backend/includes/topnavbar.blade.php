@@ -70,7 +70,7 @@
                                         <img src="{{image_path(auth()->user()->profile->image)}}" alt="profile-user"
                                             class="avatar  profile-user brround cover-image">
                                         @else
-                                        <img src="{{asset('backend/assets/images/faces/6.jpg')}}" alt="profile-user"
+                                        <img src="{{asset('backend/assets/images/faces')}}" alt="profile-user"
                                         class="avatar  profile-user brround cover-image">
                                             @endif
                                     </span>

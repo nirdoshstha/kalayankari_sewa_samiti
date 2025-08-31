@@ -2,55 +2,56 @@
 
 namespace App\Http\Controllers\backend;
 
-use App\Models\Contact;
 use App\Traits\ImageTrait;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\AdmissionForm;
+use App\Models\OrganizationStructure;
 
-class ContactUsController extends BackendBaseController
+class OrganizationStructureController extends BackendBaseController
 {
     use ImageTrait;
     protected $model;
-    protected $panel = 'Contact';
-    protected $base_route = 'contact.';
-    protected $view_path = 'backend.contact.';
+    protected $panel = 'OrganizationStructure';
+    protected $base_route = 'organization.';
+    protected $view_path = 'backend.organization.';
 
     public function __construct()
     {
-        $this->model = new Contact();
+        $this->model = new OrganizationStructure();
     }
 
     public function index()
     {
         $data = [];
-        $data['contacts'] = $this->model->where('type', 'contact')->latest()->get();
-        $data['contact'] = $this->model->where('type', 'page')->first();
+        $data['organizations'] = $this->model->where('type', 'post')->latest()->get();
+        $data['organization'] = $this->model->where('type', 'page')->first();
         return view($this->__loadDataToView($this->view_path . 'index'), compact('data'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:30',
+            'title' => 'required',
+            // 'rank' =>'required|string|unique:organizations,rank', 
+            'image' => 'nullable|max:2048',
         ]);
 
         try {
             $data = $request->all();
 
-            if ($request->hasFile('subject')) {
-                $banner = $this->imageUpload($request->subject, 'contact');
-                $data['subject'] = $banner;
+            if ($request->hasFile('image')) {
+                $banner = $this->imageUpload($request->image, 'organization');
+                $data['image'] = $banner;
             }
 
-            $contact = $this->model->create($data + [
+            $organization = $this->model->create($data + [
                 'type' => $request->type,
                 'created_by' => auth()->user()->id,
             ]);
 
             return response()->json([
-                'success_message' => 'Contact Create Successfully',
+                'success_message' => 'Organization Create Successfully',
                 'url' => route($this->base_route . 'index'),
                 'reload' => true
             ]);
@@ -66,35 +67,36 @@ class ContactUsController extends BackendBaseController
     public function edit(Request $request, $id)
     {
         $data = [];
-        $data['contact'] = $this->model->find($id);
-        $data['contact-slider'] = $this->model->find($id);
+        $data['organization'] = $this->model->find($id);
         return view($this->__loadDataToView($this->view_path . 'edit'), compact('data'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string|max:30',
+            'title' => 'required',
+            // 'rank' =>'required|string|unique:organizations,rank',  
+            'image' => 'nullable|max:2048',
         ]);
 
-        $contact = $this->model->find($id);
+        $organization = $this->model->find($id);
 
         try {
             $data = $request->all();
 
-            if ($request->hasFile('subject')) {
-                deleteImage($contact->subject);
-                $banner = $this->imageUpload($request->subject, 'contact');
-                $data['subject'] = $banner;
+            if ($request->hasFile('image')) {
+                deleteImage($organization->image);
+                $banner = $this->imageUpload($request->image, 'organization');
+                $data['image'] = $banner;
             }
 
-            $contact->update($data + [
+            $organization->update($data + [
                 'type' => $request->type,
                 'updated_by' => auth()->user()->id,
             ]);
 
             return response()->json([
-                'success_message' => 'Contact Update Successfully',
+                'success_message' => 'Organization Update Successfully',
                 'url' => route($this->base_route . 'index'),
                 'reload' => true
             ]);
@@ -107,39 +109,30 @@ class ContactUsController extends BackendBaseController
         }
     }
 
-    public function applyContact()
+    public function statusChanged(Request $request)
     {
-        $data['contacts'] = Contact::where('type', 'apply')->latest()->get();
-        return view($this->__loadDataToView($this->view_path . 'apply'), compact('data'));
-    }
 
-    public function applyAdmission()
-    {
-        $data['admissions'] = AdmissionForm::latest()->get();
-        return view($this->__loadDataToView($this->view_path . 'admission'), compact('data'));
-    }
+        $organization_id = $request['organization_id'];
 
-    public function deleteAdmission($id)
-    {
-        $admission = AdmissionForm::find($id);
-        deleteImage($admission->image);
-        $admission->delete();
+        $organization = $this->model->find($organization_id);
+        $organization->status = $organization->status ? '0' : '1';
+        $organization->save();
+
         return response()->json([
-            'success_message' => 'Admission Form Deleted Successfully',
-            'url' => route('admission.index'),
-            'reload' => true
+            'success_message' => 'Organization Status Change Successfully',
+            'url' => route($this->base_route . 'index'),
         ]);
     }
 
     public function destroy($id)
     {
-        $contact = $this->model->find($id);
+        $organization = $this->model->find($id);
 
         try {
-            deleteImage($contact->subject);
-            $contact->delete();
+            deleteImage($organization->image);
+            $organization->delete();
             return response()->json([
-                'success_message' => 'Contact Deleted Successfully',
+                'success_message' => 'Organization Deleted Successfully',
                 'url' => route($this->base_route . 'index'),
                 'reload' => true
             ]);

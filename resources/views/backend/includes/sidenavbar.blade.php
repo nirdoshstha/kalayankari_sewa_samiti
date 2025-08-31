@@ -92,10 +92,53 @@
                     </ul>
                 </li>
 
+                <li class="slide @if (\Route::is('introduction.index*')) is-expanded @endif">
+                    <a class="side-menu__item @if (\Route::is('introduction.index*')) active @endif" data-bs-toggle="slide"
+                        href="#">
+                        <i class="fa fa-mortar-board fs-6"></i>
+                        <span class="side-menu__label mx-2">About Us</span><i class="angle fa fa-angle-right"></i></a>
+                    <ul class="slide-menu @if (\Route::is('introduction.index*')) active @endif">
+                        <li class="side-menu-label1"><a href="javascript:void(0)">Utilities</a></li>
+                        <li>
+                            <a href="{{ route('introduction.index') }}"
+                                class="slide-item @if (\Route::is('introduction.index*')) active @endif">
+                                <i class="fa fa-list-alt fs-6  mx-2"></i>Introduction
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('objective.index') }}"
+                                class="slide-item @if (\Route::is('objective.index*')) active @endif">
+                                <i class="fa fa-list-alt fs-6  mx-2"></i>Objectives
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('chairperson.index') }}"
+                                class="slide-item @if (\Route::is('chairperson.index*')) active @endif">
+                                <i class="fa fa-list-alt fs-6  mx-2"></i>Chairpersons
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('thakali.index') }}"
+                                class="slide-item @if (\Route::is('thakali.index*')) active @endif">
+                                <i class="fa fa-list-alt fs-6  mx-2"></i>Thakali Head
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="slide">
+                    <a href="{{ route('organization.index') }}"
+                        class="side-menu__item has-link @if (\Route::is('organization.index*')) active @endif">
+                        <i class="fa fa-list-alt fs-6"></i>
+                        <span class="side-menu__label mx-2">Organization Structure</span>
+                    </a>
+                </li>
+
+
 
                 <li class="slide @if (\Route::is('album.index*', 'video.index*')) is-expanded @endif">
-                    <a class="side-menu__item @if (\Route::is('album.index*', 'video.index*')) active @endif" data-bs-toggle="slide"
-                        href="#">
+                    <a class="side-menu__item @if (\Route::is('album.index*', 'video.index*')) active @endif"
+                        data-bs-toggle="slide" href="#">
                         <i class="fa fa-file-image-o fs-6"></i>
                         <span class="side-menu__label mx-2">Gallery</span><i class="angle fa fa-angle-right"></i></a>
                     <ul class="slide-menu @if (\Route::is('album.index*', 'video.index*')) active @endif">
@@ -108,6 +151,14 @@
                                     class="fa fa-file-video-o fs-6  mx-2"></i>Video</a></li>
 
                     </ul>
+                </li>
+
+                <li class="slide">
+                    <a href="{{ route('notice.index') }}"
+                        class="side-menu__item has-link @if (\Route::is('notice.index*')) active @endif">
+                        <i class="fa fa-list-alt fs-6"></i>
+                        <span class="side-menu__label mx-2">News And Events</span>
+                    </a>
                 </li>
 
                 <li class="slide">
@@ -144,8 +195,15 @@
                                 class="slide-item @if (\Route::is('admission.index*')) active @endif"><i
                                     class="fa fa-file-video-o fs-6  mx-2"></i>Admission</a></li>
 
+
+
                     </ul>
                 </li>
+
+                <li><a href="{{ route('ajax.index') }}"
+                        class="slide-item @if (\Route::is('ajax.index*')) active @endif"><i
+                            class="fa fa-file-video-o fs-6  mx-2"></i>Ajax TEst</a></li>
+
 
             </ul>
 

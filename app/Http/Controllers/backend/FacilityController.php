@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\backend;
- 
+
 use App\Models\Imageable;
 use App\Traits\ImageTrait;
 use Illuminate\Support\Str;
@@ -34,38 +34,37 @@ class FacilityController extends BackendBaseController
     {
         $request->validate([
             'title' => 'required|string|max:30',
-            'image' =>'nullable|max:2048',
+            'image' => 'nullable|max:2048',
             'description' => 'nullable|max:1500',
         ]);
 
-        try{
+        try {
             $data = $request->all();
 
-        if ($request->hasFile('image')) {
-            $banner = $this->imageUpload($request->image, 'facility');
-            $data['image'] = $banner;
-        }
+            if ($request->hasFile('image')) {
+                $banner = $this->imageUpload($request->image, 'facility');
+                $data['image'] = $banner;
+            }
 
-        $facility = $this->model->create($data + [
-            'type' => $request->type,
-            'created_by' => auth()->user()->id,
-            'slug' => Str::slug($request->title)
-        ]);
+            $facility = $this->model->create($data + [
+                'type' => $request->type,
+                'created_by' => auth()->user()->id,
+                'slug' => Str::slug($request->title)
+            ]);
 
-        if (isset($request->other_image)) {
-            $this->storeMultipleImage($facility, $request->other_image);
-        }
+            if (isset($request->other_image)) {
+                $this->storeMultipleImage($facility, $request->other_image);
+            }
 
-        return response()->json([
-            'success_message' => 'Facility Create Successfully',
-            'url' => route($this->base_route . 'index'),
-            'reload' => true
-        ]);
-        }
-        catch (\Exception $e) {
+            return response()->json([
+                'success_message' => 'Facility Create Successfully',
+                'url' => route($this->base_route . 'index'),
+                'reload' => true
+            ]);
+        } catch (\Exception $e) {
             return response()->json([
                 'error_message' => 'Something Went Wrong',
-                'url' => route($this->base_route . 'index'), 
+                'url' => route($this->base_route . 'index'),
             ]);
         }
     }
@@ -81,41 +80,40 @@ class FacilityController extends BackendBaseController
     {
         $request->validate([
             'title' => 'required|string|max:30',
-            'image' =>'nullable|max:2048',
+            'image' => 'nullable|max:2048',
             'description' => 'nullable|max:1500',
         ]);
 
         $facility = $this->model->find($id);
 
-       try{
-        $data = $request->all();
+        try {
+            $data = $request->all();
 
-        if ($request->hasFile('image')) {
-            deleteImage($facility->image);
-            $banner = $this->imageUpload($request->image, 'facility');
-            $data['image'] = $banner;
-        }
+            if ($request->hasFile('image')) {
+                deleteImage($facility->image);
+                $banner = $this->imageUpload($request->image, 'facility');
+                $data['image'] = $banner;
+            }
 
-        $facility->update($data + [
-            'type' => $request->type,
-            'slug' => Str::slug($request->title),
-            'updated_by' => auth()->user()->id,
-        ]);
+            $facility->update($data + [
+                'type' => $request->type,
+                'slug' => Str::slug($request->title),
+                'updated_by' => auth()->user()->id,
+            ]);
 
-        if (isset($request->other_image)) {
-            $this->storeMultipleImage($facility, $request->other_image);
-        }
+            if (isset($request->other_image)) {
+                $this->storeMultipleImage($facility, $request->other_image);
+            }
 
-        return response()->json([
-            'success_message' => 'Facility Update Successfully',
-            'url' => route($this->base_route . 'index'),
-            'reload' => true
-        ]);
-       }
-       catch (\Exception $e) {
+            return response()->json([
+                'success_message' => 'Facility Update Successfully',
+                'url' => route($this->base_route . 'index'),
+                'reload' => true
+            ]);
+        } catch (\Exception $e) {
             return response()->json([
                 'error_message' => 'Something Went Wrong',
-                'url' => route($this->base_route . 'index'), 
+                'url' => route($this->base_route . 'index'),
             ]);
         }
     }
@@ -137,12 +135,12 @@ class FacilityController extends BackendBaseController
 
     public function destroy($id)
     {
-        $facility = $this->model->findOrFail($id); 
+        $facility = $this->model->findOrFail($id);
         try {
-           
-            if($facility->images->count()){
-                $image = Imageable::where('imageable_id',$id)->first() ;
-                
+
+            if ($facility->images->count()) {
+                $image = Imageable::where('imageable_id', $id)->first();
+
                 // foreach($image as $images){
                 //     deleteImage($image->url);
                 //      $image->delete();
@@ -150,11 +148,10 @@ class FacilityController extends BackendBaseController
                 return response()->json([
                     'success_message' => 'You cant delete it, pls delete child data first !!!',
                     'url' => route($this->base_route . 'index'),
-                    'reload' =>true
+                    'reload' => true
                 ]);
-                    
-                }
-                
+            }
+
             deleteImage($facility->image);
             $facility->delete();
 
@@ -163,13 +160,33 @@ class FacilityController extends BackendBaseController
                 'url' => route($this->base_route . 'index'),
                 'reload' => true
             ]);
-           
-           
         } catch (\Exception $e) {
             return response()->json([
                 'error_message' => 'Something Went Wrong',
                 'url' => route($this->base_route . 'index'),
             ]);
         }
+    }
+
+    public function ajaxTest(Request $request)
+    {
+        $data = [];
+        $data['facilities'] = $this->model->where('type', 'post')->latest()->get();
+
+        if ($request->ajax()) {
+            return view($this->__loadDataToView($this->view_path . 'ajax-get-data'), compact('data'))->render();
+        }
+
+
+        return view($this->__loadDataToView($this->view_path . 'ajax-index'), compact('data'));
+    }
+
+    public function ajaxSpecific(Request $request)
+    {
+
+        $id = $request['id'];
+        $facility = $this->model->find($id);
+        // return view($this->view_path . 'ajax-get-data', compact('facility'))->render();
+        return view($this->__loadDataToView($this->view_path . 'ajax-get-data'), compact('facility'))->render();
     }
 }

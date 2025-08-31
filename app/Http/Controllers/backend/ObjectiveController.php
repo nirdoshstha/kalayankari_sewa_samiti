@@ -2,55 +2,56 @@
 
 namespace App\Http\Controllers\backend;
 
-use App\Models\Contact;
 use App\Traits\ImageTrait;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\AdmissionForm;
+use App\Models\Objective;
 
-class ContactUsController extends BackendBaseController
+class ObjectiveController extends BackendBaseController
 {
     use ImageTrait;
     protected $model;
-    protected $panel = 'Contact';
-    protected $base_route = 'contact.';
-    protected $view_path = 'backend.contact.';
+    protected $panel = 'Objective';
+    protected $base_route = 'objective.';
+    protected $view_path = 'backend.objective.';
 
     public function __construct()
     {
-        $this->model = new Contact();
+        $this->model = new Objective();
     }
 
     public function index()
     {
         $data = [];
-        $data['contacts'] = $this->model->where('type', 'contact')->latest()->get();
-        $data['contact'] = $this->model->where('type', 'page')->first();
+        $data['objectives'] = $this->model->where('type', 'post')->latest()->get();
+        $data['objective'] = $this->model->where('type', 'page')->first();
         return view($this->__loadDataToView($this->view_path . 'index'), compact('data'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:30',
+            'title' => 'required',
+            // 'rank' =>'required|string|unique:objectives,rank', 
+            'image' => 'nullable|max:2048',
         ]);
 
         try {
             $data = $request->all();
 
-            if ($request->hasFile('subject')) {
-                $banner = $this->imageUpload($request->subject, 'contact');
-                $data['subject'] = $banner;
+            if ($request->hasFile('image')) {
+                $banner = $this->imageUpload($request->image, 'objective');
+                $data['image'] = $banner;
             }
 
-            $contact = $this->model->create($data + [
+            $objective = $this->model->create($data + [
                 'type' => $request->type,
                 'created_by' => auth()->user()->id,
             ]);
 
             return response()->json([
-                'success_message' => 'Contact Create Successfully',
+                'success_message' => 'objective Create Successfully',
                 'url' => route($this->base_route . 'index'),
                 'reload' => true
             ]);
@@ -66,35 +67,36 @@ class ContactUsController extends BackendBaseController
     public function edit(Request $request, $id)
     {
         $data = [];
-        $data['contact'] = $this->model->find($id);
-        $data['contact-slider'] = $this->model->find($id);
+        $data['objective'] = $this->model->find($id);
         return view($this->__loadDataToView($this->view_path . 'edit'), compact('data'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string|max:30',
+            'title' => 'required',
+            // 'rank' =>'required|string|unique:objectives,rank',  
+            'image' => 'nullable|max:2048',
         ]);
 
-        $contact = $this->model->find($id);
+        $objective = $this->model->find($id);
 
         try {
             $data = $request->all();
 
-            if ($request->hasFile('subject')) {
-                deleteImage($contact->subject);
-                $banner = $this->imageUpload($request->subject, 'contact');
-                $data['subject'] = $banner;
+            if ($request->hasFile('image')) {
+                deleteImage($objective->image);
+                $banner = $this->imageUpload($request->image, 'objective');
+                $data['image'] = $banner;
             }
 
-            $contact->update($data + [
+            $objective->update($data + [
                 'type' => $request->type,
                 'updated_by' => auth()->user()->id,
             ]);
 
             return response()->json([
-                'success_message' => 'Contact Update Successfully',
+                'success_message' => 'Objective Update Successfully',
                 'url' => route($this->base_route . 'index'),
                 'reload' => true
             ]);
@@ -107,39 +109,30 @@ class ContactUsController extends BackendBaseController
         }
     }
 
-    public function applyContact()
+    public function statusChanged(Request $request)
     {
-        $data['contacts'] = Contact::where('type', 'apply')->latest()->get();
-        return view($this->__loadDataToView($this->view_path . 'apply'), compact('data'));
-    }
 
-    public function applyAdmission()
-    {
-        $data['admissions'] = AdmissionForm::latest()->get();
-        return view($this->__loadDataToView($this->view_path . 'admission'), compact('data'));
-    }
+        $objective_id = $request['objective_id'];
 
-    public function deleteAdmission($id)
-    {
-        $admission = AdmissionForm::find($id);
-        deleteImage($admission->image);
-        $admission->delete();
+        $objective = $this->model->find($objective_id);
+        $objective->status = $objective->status ? '0' : '1';
+        $objective->save();
+
         return response()->json([
-            'success_message' => 'Admission Form Deleted Successfully',
-            'url' => route('admission.index'),
-            'reload' => true
+            'success_message' => 'Objective Status Change Successfully',
+            'url' => route($this->base_route . 'index'),
         ]);
     }
 
     public function destroy($id)
     {
-        $contact = $this->model->find($id);
+        $objective = $this->model->find($id);
 
         try {
-            deleteImage($contact->subject);
-            $contact->delete();
+            deleteImage($objective->image);
+            $objective->delete();
             return response()->json([
-                'success_message' => 'Contact Deleted Successfully',
+                'success_message' => 'Objective Deleted Successfully',
                 'url' => route($this->base_route . 'index'),
                 'reload' => true
             ]);

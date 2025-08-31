@@ -80,17 +80,17 @@
       </div>
       <div class="footer__links">
           <ul>
-              <li><a href="{{ url('school-life') }}" target="_blank">School Life</a></li>
-              <li><a href="{{ route('frontend.admission_form') }}" target="_blank">Admission Form</a>
+              <li><a href="{{ url('school-life') }}" target="_blank">Introduction</a></li>
+              <li><a href="{{ route('frontend.admission_form') }}" target="_blank">Download</a>
               </li>
-              <li><a href="{{ route('frontend.blog') }}" target="_blank">Blog</a></li>
-              <li><a href="{{ route('frontend.notices') }}" target="_blank">Notices</a></li>
+              <li><a href="{{ route('frontend.blog') }}" target="_blank">Research</a></li>
+              <li><a href="{{ route('frontend.notices') }}" target="_blank">News And Events</a></li>
               <li><a href="{{ route('frontend.contact') }}" target="_blank">Contact Us</a></li>
               <li><a href="{{ route('login') }}" target="_blank">Login</a></li>
           </ul>
       </div>
   </div>
-  <div class="col-md-2 col-lg-2 mb-3">
+  {{-- <div class="col-md-2 col-lg-2 mb-3">
       <div class="footer__title">
           <span>Brochure</span>
       </div>
@@ -107,25 +107,22 @@
               </a>
           @endif
       </div>
-  </div>
-  <div class="col-md-4 col-lg-5">
+  </div> --}}
+  {{-- <div class="col-md-4 col-lg-5">
       <div class="map">
           @if (setting()?->google_map)
               <iframe src="{{ setting()?->google_map ?? '' }}" width="100%" height="280"
                   style="border:0;" allowfullscreen="" loading="lazy"
                   referrerpolicy="no-referrer-when-downgrade"></iframe>
           @else
-              {{-- <iframe
-                                src="{{ setting()->google_map ?? ''}}"
-                                width="100%" height="280" style="border:0;" allowfullscreen="" loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"></iframe>   --}}
+               
               <iframe
                   src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14129.731766265131!2d85.34084!3d27.703916!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb199ec18003b1%3A0xb5bd3702e70173fa!2sAllstar%20Technology!5e0!3m2!1sen!2snp!4v1726155064195!5m2!1sen!2snp"
                   width="100%" height="280" style="border:0;" allowfullscreen="" loading="lazy"
                   referrerpolicy="no-referrer-when-downgrade"></iframe>
           @endif
       </div>
-  </div>
+  </div> --}}
 </div>
 </div>
 </div>

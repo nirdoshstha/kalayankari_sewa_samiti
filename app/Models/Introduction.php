@@ -5,16 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Facility extends BackendBaseModel
+class Introduction extends BackendBaseModel
 {
     use HasFactory;
-    protected $table = 'facilities';
+    protected $table = 'introductions';
     protected $fillable = [
         'type',
         'title',
         'sub_title',
-        'slug',
         'image',
+        'banner',
+        'rank',
         'description',
         'seo_title',
         'seo_keyword',
@@ -23,9 +24,4 @@ class Facility extends BackendBaseModel
         'created_by',
         'updated_by'
     ];
-
-    public function images()
-    {
-        return $this->morphMany(Imageable::class, 'imageable');
-    }
 }

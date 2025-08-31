@@ -2,55 +2,56 @@
 
 namespace App\Http\Controllers\backend;
 
-use App\Models\Contact;
 use App\Traits\ImageTrait;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\AdmissionForm;
+use App\Models\Chairperson;
 
-class ContactUsController extends BackendBaseController
+class ChairpersonController extends BackendBaseController
 {
     use ImageTrait;
     protected $model;
-    protected $panel = 'Contact';
-    protected $base_route = 'contact.';
-    protected $view_path = 'backend.contact.';
+    protected $panel = 'Chairperson';
+    protected $base_route = 'chairperson.';
+    protected $view_path = 'backend.chairperson.';
 
     public function __construct()
     {
-        $this->model = new Contact();
+        $this->model = new Chairperson();
     }
 
     public function index()
     {
         $data = [];
-        $data['contacts'] = $this->model->where('type', 'contact')->latest()->get();
-        $data['contact'] = $this->model->where('type', 'page')->first();
+        $data['chairpersons'] = $this->model->where('type', 'post')->latest()->get();
+        $data['chairperson'] = $this->model->where('type', 'page')->first();
         return view($this->__loadDataToView($this->view_path . 'index'), compact('data'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:30',
+            'title' => 'required',
+            // 'rank' =>'required|string|unique:chairpersons,rank', 
+            'image' => 'nullable|max:2048',
         ]);
 
         try {
             $data = $request->all();
 
-            if ($request->hasFile('subject')) {
-                $banner = $this->imageUpload($request->subject, 'contact');
-                $data['subject'] = $banner;
+            if ($request->hasFile('image')) {
+                $banner = $this->imageUpload($request->image, 'chairperson');
+                $data['image'] = $banner;
             }
 
-            $contact = $this->model->create($data + [
+            $chairperson = $this->model->create($data + [
                 'type' => $request->type,
                 'created_by' => auth()->user()->id,
             ]);
 
             return response()->json([
-                'success_message' => 'Contact Create Successfully',
+                'success_message' => 'Chairperson Create Successfully',
                 'url' => route($this->base_route . 'index'),
                 'reload' => true
             ]);
@@ -66,35 +67,36 @@ class ContactUsController extends BackendBaseController
     public function edit(Request $request, $id)
     {
         $data = [];
-        $data['contact'] = $this->model->find($id);
-        $data['contact-slider'] = $this->model->find($id);
+        $data['chairperson'] = $this->model->find($id);
         return view($this->__loadDataToView($this->view_path . 'edit'), compact('data'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string|max:30',
+            'title' => 'required',
+            // 'rank' =>'required|string|unique:chairpersons,rank',  
+            'image' => 'nullable|max:2048',
         ]);
 
-        $contact = $this->model->find($id);
+        $chairperson = $this->model->find($id);
 
         try {
             $data = $request->all();
 
-            if ($request->hasFile('subject')) {
-                deleteImage($contact->subject);
-                $banner = $this->imageUpload($request->subject, 'contact');
-                $data['subject'] = $banner;
+            if ($request->hasFile('image')) {
+                deleteImage($chairperson->image);
+                $banner = $this->imageUpload($request->image, 'chairperson');
+                $data['image'] = $banner;
             }
 
-            $contact->update($data + [
+            $chairperson->update($data + [
                 'type' => $request->type,
                 'updated_by' => auth()->user()->id,
             ]);
 
             return response()->json([
-                'success_message' => 'Contact Update Successfully',
+                'success_message' => 'Chairperson Update Successfully',
                 'url' => route($this->base_route . 'index'),
                 'reload' => true
             ]);
@@ -107,39 +109,30 @@ class ContactUsController extends BackendBaseController
         }
     }
 
-    public function applyContact()
+    public function statusChanged(Request $request)
     {
-        $data['contacts'] = Contact::where('type', 'apply')->latest()->get();
-        return view($this->__loadDataToView($this->view_path . 'apply'), compact('data'));
-    }
 
-    public function applyAdmission()
-    {
-        $data['admissions'] = AdmissionForm::latest()->get();
-        return view($this->__loadDataToView($this->view_path . 'admission'), compact('data'));
-    }
+        $chairperson_id = $request['chairperson_id'];
 
-    public function deleteAdmission($id)
-    {
-        $admission = AdmissionForm::find($id);
-        deleteImage($admission->image);
-        $admission->delete();
+        $chairperson = $this->model->find($chairperson_id);
+        $chairperson->status = $chairperson->status ? '0' : '1';
+        $chairperson->save();
+
         return response()->json([
-            'success_message' => 'Admission Form Deleted Successfully',
-            'url' => route('admission.index'),
-            'reload' => true
+            'success_message' => 'Chairperson Status Change Successfully',
+            'url' => route($this->base_route . 'index'),
         ]);
     }
 
     public function destroy($id)
     {
-        $contact = $this->model->find($id);
+        $chairperson = $this->model->find($id);
 
         try {
-            deleteImage($contact->subject);
-            $contact->delete();
+            deleteImage($chairperson->image);
+            $chairperson->delete();
             return response()->json([
-                'success_message' => 'Contact Deleted Successfully',
+                'success_message' => 'Chairperson Deleted Successfully',
                 'url' => route($this->base_route . 'index'),
                 'reload' => true
             ]);

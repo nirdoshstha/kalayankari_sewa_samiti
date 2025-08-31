@@ -52,25 +52,46 @@
      });
      var swiper = new Swiper(".testi", {
          slidesPerView: 1,
-         spaceBetween: 40,
-         centeredSlides: true,
+         spaceBetween: 20,
+        //  centeredSlides: true,
          loop: true,
-         speed: 2000,
+         speed: 1000,
          grabCursor: true,
+         navigation: {
+             nextEl: ".swiper-button-next",
+             prevEl: ".swiper-button-prev",
+         },
          autoplay: {
-             delay: 8000,
+             delay: 2000,
              disableOnInteraction: false,
          },
          breakpoints: {
+             640: {
+                 slidesPerView: 2,
+                 spaceBetween: 20,
+             },
              768: {
                  slidesPerView: 2,
                  spaceBetween: 40,
              },
              1024: {
                  slidesPerView: 3,
-                 spaceBetween: 40,
+                 spaceBetween: 50,
+             },
+             1200: {
+                 slidesPerView: 4,
+                 spaceBetween: 50,
              },
          },
+     });
+
+     $(".testi").each(function(elem, target) {
+         var swp = target.swiper;
+         $(this).hover(function() {
+             swp.autoplay.stop();
+         }, function() {
+             swp.autoplay.start();
+         });
      });
  </script>
  <script>

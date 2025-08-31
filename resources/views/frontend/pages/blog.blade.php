@@ -1,13 +1,13 @@
 @extends('frontend.layouts.master')
 
 @section('title')
-Blog
+    Blog
 @endsection
 
 @section('content')
-    @if(!empty($data['blog']))
+    @if (!empty($data['blog']))
         <div class="breadcrumb-banner"
-            style="background-image: url('{{asset('storage/'.$data['blog']->image)}}');background-position: center; background-repeat: no-repeat; background-size: cover;">
+            style="background-image: url('{{ asset('storage/' . $data['blog']->image) }}');background-position: center; background-repeat: no-repeat; background-size: cover;">
             <div class="container">
                 <div class="banner-desc d-flex flex-column justify-content-center align-items-center">
                     <div class="page-title">
@@ -23,8 +23,8 @@ Blog
             </div>
         </div>
     @else
-    <div class="breadcrumb-banner"
-            style="background-image: url('{{asset('frontend/assets/image/page-header.jpg')}}');background-position: center; background-repeat: no-repeat; background-size: cover;">
+        <div class="breadcrumb-banner"
+            style="background-image: url('{{ asset('frontend/assets/image/page-header.jpg') }}');background-position: center; background-repeat: no-repeat; background-size: cover;">
             <div class="container">
                 <div class="banner-desc d-flex flex-column justify-content-center align-items-center">
                     <div class="page-title">
@@ -40,20 +40,21 @@ Blog
             </div>
         </div>
     @endif
-        <div class="blog-section section-margin">
-            <div class="container">
-                <div class="blog-wrapper">
-                    <div class="row">
-                    @forelse ($data['blogs'] as $blog )
+    <div class="blog-section section-margin">
+        <div class="container">
+            <div class="blog-wrapper">
+                <div class="row">
+                    @forelse ($data['blogs'] as $blog)
                         <div class="col-lg-4 col-md-6 col-12 mb-4">
-                            <a href="{{route('frontend.blog_single_page',$blog->slug)}}">
+                            <a href="{{ route('frontend.blog_single_page', $blog->slug) }}">
                                 <div class="blog-card">
                                     <div class="blog-img">
-                                        <img src="{{asset('storage/'.$blog->image)}}" width="100%" height="100%" alt="">
+                                        <img src="{{ asset('storage/' . $blog->image) }}" width="100%" height="100%"
+                                            alt="">
                                     </div>
                                     <div class="blog-desc">
-                                        <h4>{{ Str::limit($blog->title,30) }}</h4>
-                                        <p> {!! Str::limit($blog->description,100) !!}</p>
+                                        <h4>{{ Str::limit($blog->title, 30) }}</h4>
+                                        <p> {!! Str::limit($blog->description, 100) !!}</p>
                                         <div class="d-flex justify-content-center">
                                             <button class="btn btn-read">Read More</button>
                                         </div>
@@ -81,10 +82,10 @@ Blog
                             </a>
                         </div>
                     @endforelse
-                        
-                        
-                    </div>
+
+
                 </div>
             </div>
         </div>
+    </div>
 @endsection

@@ -88,8 +88,13 @@
           <div class="container">
               <div class="logo">
                   <a href="{{ route('frontend.index') }}">
-                      <img src="{{ asset('frontend/assets/image/logo-07.png') }}" width="100%" height="100%"
-                          alt="Logo">
+                      @isset(setting()?->logo)
+                          <img src="{{ asset('storage/' . setting()->logo) }}" width="47%" height="47%"
+                              alt="Logo">
+                      @else
+                          <img src="{{ asset('frontend/assets/image/logo-07.png') }}" width="100%" height="100%"
+                              alt="Logo">
+                      @endisset
                   </a>
               </div>
               <div class="sitenavigation d-flex">
@@ -102,7 +107,7 @@
                       </div>
                   </span>
                   <ul>
-                      @foreach (categories() as $category)
+                      {{-- @foreach (categories() as $category)
                           @if ($category->subCategories->count())
                               <li class="nav-dropdown"><a href="#" class="navbar__links">{{ $category->title }}
                                       <i class="fa-solid fa-angle-down"></i></a>
@@ -117,31 +122,30 @@
                               <li class="nav-dropdown"><a href="/{{ $category->slug }}"
                                       class="navbar__links">{{ $category->title }}</a> </li>
                           @endif
-                      @endforeach
-
-                      <li><a href="{{ route('frontend.facility') }}" class="navbar__links">Facilities</a></li>
-                      <li class="nav-dropdown"><a href="#" class="navbar__links">Acadamy <i
-                                  class="fa-solid fa-angle-down"></i></a>
-                          <ul>
-                              <li><a href="{{ route('frontend.class_information') }}" class="sub__links">Class
-                                      Information</a></li>
-                          </ul>
+                      @endforeach --}}
+                      <li><a href="{{ route('frontend.introduction') }}" class="navbar__links">Introduction</a></li>
+                      <li><a href="{{ route('frontend.organization') }}" class="navbar__links">Organization
+                              Structure</a>
                       </li>
-                      <li class="nav-dropdown"><a href="#" class="navbar__links">Gallery <i
+
+
+                      <li><a href="{{ route('frontend.notices') }}" class="navbar__links">News And Events</a></li>
+
+                      {{-- <li class="nav-dropdown"><a href="#" class="navbar__links">Gallery <i
                                   class="fa-solid fa-angle-down"></i></a>
                           <ul>
                               <li><a href="{{ route('frontend.album') }}" class="sub__links">Album</a></li>
                               <li><a href="{{ route('frontend.video') }}" class="sub__links">Video</a></li>
                           </ul>
-                      </li>
-                      <li class="nav-dropdown"><a href="#" class="navbar__links">Downloads <i
-                                  class="fa-solid fa-angle-down"></i></a>
-                          <ul>
+                      </li> --}}
+                      <li class="nav-dropdown"><a href="{{ route('frontend.download') }}"
+                              class="navbar__links">Downloads </a>
+                          {{-- <ul>
                               @foreach (downloads() as $download)
                                   <li><a href="{{ asset('storage/' . $download->image) }}" target="_blank"
                                           class="sub__links">{{ $download->title }}</a></li>
                               @endforeach
-                          </ul>
+                          </ul> --}}
                       </li>
                       <li><a href="{{ route('frontend.contact') }}" class="navbar__links">Contact Us</a></li>
                       <a class="btn btn-nav mobile-btn" href="#" data-bs-toggle="offcanvas"
@@ -149,8 +153,8 @@
                       </a>
                   </ul>
                   <div class="contact_details">
-                      <a class="btn btn-nav" href="#" data-bs-toggle="offcanvas"
-                          data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"> <span>Apply Now</span> </a>
+                      <a class="btn btn-nav" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                          aria-controls="offcanvasRight"> <span>Apply Now</span> </a>
                   </div>
               </div>
           </div>

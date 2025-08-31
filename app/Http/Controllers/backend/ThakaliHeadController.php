@@ -2,55 +2,56 @@
 
 namespace App\Http\Controllers\backend;
 
-use App\Models\Contact;
 use App\Traits\ImageTrait;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\AdmissionForm;
+use App\Models\ThakaliHead;
 
-class ContactUsController extends BackendBaseController
+class ThakaliHeadController extends BackendBaseController
 {
     use ImageTrait;
     protected $model;
-    protected $panel = 'Contact';
-    protected $base_route = 'contact.';
-    protected $view_path = 'backend.contact.';
+    protected $panel = 'Thakali Head';
+    protected $base_route = 'thakali.';
+    protected $view_path = 'backend.thakali.';
 
     public function __construct()
     {
-        $this->model = new Contact();
+        $this->model = new ThakaliHead();
     }
 
     public function index()
     {
         $data = [];
-        $data['contacts'] = $this->model->where('type', 'contact')->latest()->get();
-        $data['contact'] = $this->model->where('type', 'page')->first();
+        $data['thakalis'] = $this->model->where('type', 'post')->latest()->get();
+        $data['thakali'] = $this->model->where('type', 'page')->first();
         return view($this->__loadDataToView($this->view_path . 'index'), compact('data'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:30',
+            'title' => 'required',
+            // 'rank' =>'required|string|unique:thakalis,rank', 
+            'image' => 'nullable|max:2048',
         ]);
 
         try {
             $data = $request->all();
 
-            if ($request->hasFile('subject')) {
-                $banner = $this->imageUpload($request->subject, 'contact');
-                $data['subject'] = $banner;
+            if ($request->hasFile('image')) {
+                $banner = $this->imageUpload($request->image, 'thakali');
+                $data['image'] = $banner;
             }
 
-            $contact = $this->model->create($data + [
+            $thakali = $this->model->create($data + [
                 'type' => $request->type,
                 'created_by' => auth()->user()->id,
             ]);
 
             return response()->json([
-                'success_message' => 'Contact Create Successfully',
+                'success_message' => 'Thakali Create Successfully',
                 'url' => route($this->base_route . 'index'),
                 'reload' => true
             ]);
@@ -66,35 +67,36 @@ class ContactUsController extends BackendBaseController
     public function edit(Request $request, $id)
     {
         $data = [];
-        $data['contact'] = $this->model->find($id);
-        $data['contact-slider'] = $this->model->find($id);
+        $data['thakali'] = $this->model->find($id);
         return view($this->__loadDataToView($this->view_path . 'edit'), compact('data'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|string|max:30',
+            'title' => 'required',
+            // 'rank' =>'required|string|unique:thakalis,rank',  
+            'image' => 'nullable|max:2048',
         ]);
 
-        $contact = $this->model->find($id);
+        $thakali = $this->model->find($id);
 
         try {
             $data = $request->all();
 
-            if ($request->hasFile('subject')) {
-                deleteImage($contact->subject);
-                $banner = $this->imageUpload($request->subject, 'contact');
-                $data['subject'] = $banner;
+            if ($request->hasFile('image')) {
+                deleteImage($thakali->image);
+                $banner = $this->imageUpload($request->image, 'thakali');
+                $data['image'] = $banner;
             }
 
-            $contact->update($data + [
+            $thakali->update($data + [
                 'type' => $request->type,
                 'updated_by' => auth()->user()->id,
             ]);
 
             return response()->json([
-                'success_message' => 'Contact Update Successfully',
+                'success_message' => 'Thakali Update Successfully',
                 'url' => route($this->base_route . 'index'),
                 'reload' => true
             ]);
@@ -107,39 +109,30 @@ class ContactUsController extends BackendBaseController
         }
     }
 
-    public function applyContact()
+    public function statusChanged(Request $request)
     {
-        $data['contacts'] = Contact::where('type', 'apply')->latest()->get();
-        return view($this->__loadDataToView($this->view_path . 'apply'), compact('data'));
-    }
 
-    public function applyAdmission()
-    {
-        $data['admissions'] = AdmissionForm::latest()->get();
-        return view($this->__loadDataToView($this->view_path . 'admission'), compact('data'));
-    }
+        $thakali_id = $request['thakali_id'];
 
-    public function deleteAdmission($id)
-    {
-        $admission = AdmissionForm::find($id);
-        deleteImage($admission->image);
-        $admission->delete();
+        $thakali = $this->model->find($thakali_id);
+        $thakali->status = $thakali->status ? '0' : '1';
+        $thakali->save();
+
         return response()->json([
-            'success_message' => 'Admission Form Deleted Successfully',
-            'url' => route('admission.index'),
-            'reload' => true
+            'success_message' => 'Thakali Status Change Successfully',
+            'url' => route($this->base_route . 'index'),
         ]);
     }
 
     public function destroy($id)
     {
-        $contact = $this->model->find($id);
+        $thakali = $this->model->find($id);
 
         try {
-            deleteImage($contact->subject);
-            $contact->delete();
+            deleteImage($thakali->image);
+            $thakali->delete();
             return response()->json([
-                'success_message' => 'Contact Deleted Successfully',
+                'success_message' => 'Thakali Deleted Successfully',
                 'url' => route($this->base_route . 'index'),
                 'reload' => true
             ]);
