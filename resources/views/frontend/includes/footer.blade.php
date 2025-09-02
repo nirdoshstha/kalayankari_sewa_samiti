@@ -74,41 +74,41 @@
           </ul>
       </div>
   </div>
-  <div class="col-md-3 col-lg-2 mb-3">
+  <div class="col-md-3 col-lg-3 mb-3">
       <div class="footer__title">
           <span>Quick Links</span>
       </div>
       <div class="footer__links">
           <ul>
-              <li><a href="{{ url('school-life') }}" target="_blank">Introduction</a></li>
-              <li><a href="{{ route('frontend.admission_form') }}" target="_blank">Download</a>
+              <li><a href="{{ route('frontend.introduction') }}" target="_blank">Introduction</a></li>
+              <li><a href="{{ route('frontend.download') }}" target="_blank">Download</a>
               </li>
-              <li><a href="{{ route('frontend.blog') }}" target="_blank">Research</a></li>
+
               <li><a href="{{ route('frontend.notices') }}" target="_blank">News And Events</a></li>
               <li><a href="{{ route('frontend.contact') }}" target="_blank">Contact Us</a></li>
               <li><a href="{{ route('login') }}" target="_blank">Login</a></li>
           </ul>
       </div>
   </div>
-  {{-- <div class="col-md-2 col-lg-2 mb-3">
-      <div class="footer__title">
-          <span>Brochure</span>
+
+  <div class="col-md-3 col-lg-3">
+      <div class="footer__title mb-3">
+          <span>Chairperson</span>
       </div>
-      <div class="mb-3">
-          @if (setting()?->image)
-              <a href="{{ asset('storage/' . setting()?->image) }}" target="_blank">
-                  <img src="{{ asset('frontend/assets/image/book.png') }}" width="100%"
-                      height="100%" alt="Brochure Download">
-              </a>
-          @else
-              <a href="#" target="_blank">
-                  <img src="{{ asset('frontend/assets/image/book.png') }}" width="100%"
-                      height="100%" alt="Brochure Download">
-              </a>
-          @endif
+      <div class="justify-content-center align-items-center gap-2 d-flex flex-wrap">
+          @forelse (chairpersons() as $chairperson)
+              <img src="{{ asset('storage/' . $chairperson->image) }}" class="img-thumbnail p-0"
+                  width="90px" alt="Chairperson Image">
+
+          @empty
+          @endforelse
+
       </div>
-  </div> --}}
-  {{-- <div class="col-md-4 col-lg-5">
+  </div>
+</div>
+
+</div>
+{{-- <div class="col-md-4 col-lg-5">
       <div class="map">
           @if (setting()?->google_map)
               <iframe src="{{ setting()?->google_map ?? '' }}" width="100%" height="280"

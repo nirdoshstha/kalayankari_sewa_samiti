@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Blog;
+use App\Models\Chairperson;
 use App\Models\Team;
 use App\Models\Video;
 use App\Models\Notice;
@@ -11,6 +12,7 @@ use App\Models\Download;
 use App\Models\OurService;
 use App\Models\PopupModal;
 use App\Models\Testimonial;
+use App\Models\ThakaliHead;
 use Illuminate\Support\Facades\File;
 
 function image_path($path)
@@ -38,98 +40,61 @@ if (!function_exists('setting')) {
     }
 }
 
-if(!function_exists('modals')){
-    function modals(){
-        $modal = PopupModal::active()->get();
-        return $modal;
-    }
-}
+
 
 if (!function_exists('sliders')) {
     function sliders()
     {
-        $sliders = Slider::latest()->active()->where('type','post')->get();
+        $sliders = Slider::latest()->active()->where('type', 'post')->get();
         return $sliders;
     }
 }
 
-if (!function_exists('teams')) {
-    function teams()
-    {
-        $teams = Team::active()->where('type','post')->orderBy('rank','asc')->get();
-        return $teams;
-    }
-}
 
-if (!function_exists('notices')) {
-    function notices()
+if (!function_exists('countDownload')) {
+    function countDownload()
     {
-        $notices = Notice::active()->where('type','post')->latest()->take(3)->get();
-        return $notices;
-    }
-}
-
-if (!function_exists('testimonials')) {
-    function testimonials()
-    {
-        $testimonials = Testimonial::active()->where('type','post')->latest()->get();
-        return $testimonials;
-    }
-}
-
-if (!function_exists('video')) {
-    function video()
-    {
-        $video = Video::active()->where('type','post')->latest()->first();
-        return $video;
-    }
-}
-
-if (!function_exists('downloads')) {
-    function downloads()
-    {
-        $downloads = Download::where('type','post')->orderBy('rank')->get();
+        $downloads = Download::where('type', 'post')->count();
         return $downloads;
     }
 }
 
-if (!function_exists('categories')) {
-    function categories()
-    {
-        $categories = OurService::active()->where('parent_id',null)->orderBy('rank','asc')->get();
-        return $categories;
-    }
-}
-
-
 if (!function_exists('contactusCount')) {
     function contactusCount()
     {
-        $count_contact = Contact::where('type','contact')->count(); 
+        $count_contact = Contact::where('type', 'contact')->count();
         return $count_contact;
     }
 }
 
-if (!function_exists('applyCount')) {
-    function applyCount()
+if (!function_exists('countThakali')) {
+    function countThakali()
     {
-        $count_apply = Contact::where('type','apply')->count(); 
-        return $count_apply;
+        $count_thakali = ThakaliHead::where('type', 'post')->count();
+        return $count_thakali;
     }
 }
 
-if (!function_exists('noticeCount')) {
-    function noticeCount()
+if (!function_exists('countNotice')) {
+    function countNotice()
     {
-        $count_notice = Notice::where('type','post')->count(); 
+        $count_notice = Notice::where('type', 'post')->count();
         return $count_notice;
     }
 }
 
-if (!function_exists('blogCount')) {
-    function blogCount()
+if (!function_exists('countChairperson')) {
+    function countChairperson()
     {
-        $count_blog = Blog::where('type','post')->count(); 
-        return $count_blog;
+        $count = Chairperson::where('type', 'post')->count();
+        return $count;
+    }
+}
+
+if (!function_exists('chairpersons')) {
+    function chairpersons()
+    {
+        $chairpersons = Chairperson::where('type', 'post')->limit(6)->get();
+        return $chairpersons;
     }
 }

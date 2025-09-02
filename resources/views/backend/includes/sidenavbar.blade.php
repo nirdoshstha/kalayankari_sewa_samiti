@@ -42,55 +42,15 @@
                         <li><a href="{{ route('slider.index') }}"
                                 class="slide-item @if (\Route::is('slider.index*')) active @endif"><i
                                     class="fa fa-file-image-o fs-6  mx-2"></i>Slider</a></li>
-                        <li><a href="{{ route('award.index') }}"
-                                class="slide-item @if (\Route::is('award.index*')) active @endif"><i
-                                    class="fa fa-trophy fs-6  mx-2"></i>School Award</a></li>
-                        <li><a href="{{ route('team.index') }}"
-                                class="slide-item @if (\Route::is('team.index*')) active @endif"><i
-                                    class="fa fa-group fs-6  mx-2"></i>Team Member</a></li>
-                        <li><a href="{{ route('notice.index') }}"
-                                class="slide-item @if (\Route::is('notice.index*')) active @endif"><i
-                                    class="fa fa-list-alt fs-6  mx-2"></i>Notice</a></li>
-                        <li><a href="{{ route('testimonial.index') }}"
-                                class="slide-item  @if (\Route::is('testimonial.index*')) active @endif"><i
-                                    class="fa fa-file-video-o fs-6  mx-2"></i>Testimonial</a></li>
-                        <li><a href="{{ route('modal.index') }}"
-                                class="slide-item  @if (\Route::is('modal.index*')) active @endif"><i
-                                    class="fa fa-file-video-o fs-6  mx-2"></i>Popup Modal</a></li>
 
                     </ul>
                 </li>
 
-                <li class="slide">
-                    <a class="side-menu__item has-link @if (\Route::is('service.index*')) active @endif"
-                        data-bs-toggle="slide" href="{{ route('service.index') }}">
-                        <i class="fa fa-file-o fs-6"></i>
-                        <span class="side-menu__label mx-2">Create Page</span>
-                    </a>
-                </li>
 
 
-                <li class="slide">
-                    <a class="side-menu__item has-link @if (\Route::is('facility.index*')) active @endif"
-                        data-bs-toggle="slide" href="{{ route('facility.index') }}">
-                        <i class="fa fa-clipboard fs-6"></i>
-                        <span class="side-menu__label mx-2">Facility</span>
-                    </a>
-                </li>
 
-                <li class="slide @if (\Route::is('class-information.index*')) is-expanded @endif">
-                    <a class="side-menu__item @if (\Route::is('class-information.index*')) active @endif" data-bs-toggle="slide"
-                        href="#">
-                        <i class="fa fa-mortar-board fs-6"></i>
-                        <span class="side-menu__label mx-2">Academy</span><i class="angle fa fa-angle-right"></i></a>
-                    <ul class="slide-menu @if (\Route::is('class-information.index*')) active @endif">
-                        <li class="side-menu-label1"><a href="javascript:void(0)">Utilities</a></li>
-                        <li><a href="{{ route('class-information.index') }}"
-                                class="slide-item @if (\Route::is('class-information.index*')) active @endif"><i
-                                    class="fa fa-list-alt fs-6  mx-2"></i>Class Information</a></li>
 
-                    </ul>
-                </li>
+
 
                 <li class="slide @if (\Route::is('introduction.index*')) is-expanded @endif">
                     <a class="side-menu__item @if (\Route::is('introduction.index*')) active @endif" data-bs-toggle="slide"
@@ -114,13 +74,13 @@
                         <li>
                             <a href="{{ route('chairperson.index') }}"
                                 class="slide-item @if (\Route::is('chairperson.index*')) active @endif">
-                                <i class="fa fa-list-alt fs-6  mx-2"></i>Chairpersons
+                                <i class="fa fa-list-alt fs-6  mx-2"></i>Chairpersons ({{ countChairperson() ?? '0' }})
                             </a>
                         </li>
                         <li>
                             <a href="{{ route('thakali.index') }}"
                                 class="slide-item @if (\Route::is('thakali.index*')) active @endif">
-                                <i class="fa fa-list-alt fs-6  mx-2"></i>Thakali Head
+                                <i class="fa fa-list-alt fs-6  mx-2"></i>Thakali Head ({{ countThakali() ?? '0' }})
                             </a>
                         </li>
                     </ul>
@@ -136,28 +96,13 @@
 
 
 
-                <li class="slide @if (\Route::is('album.index*', 'video.index*')) is-expanded @endif">
-                    <a class="side-menu__item @if (\Route::is('album.index*', 'video.index*')) active @endif"
-                        data-bs-toggle="slide" href="#">
-                        <i class="fa fa-file-image-o fs-6"></i>
-                        <span class="side-menu__label mx-2">Gallery</span><i class="angle fa fa-angle-right"></i></a>
-                    <ul class="slide-menu @if (\Route::is('album.index*', 'video.index*')) active @endif">
-                        <li class="side-menu-label1"><a href="javascript:void(0)">Utilities</a></li>
-                        <li><a href="{{ route('album.index') }}"
-                                class="slide-item @if (\Route::is('album.index*')) active @endif"><i
-                                    class="fa fa-file-image-o fs-6  mx-2"></i>Album</a></li>
-                        <li><a href="{{ route('video.index') }}"
-                                class="slide-item @if (\Route::is('video.index*')) active @endif"><i
-                                    class="fa fa-file-video-o fs-6  mx-2"></i>Video</a></li>
 
-                    </ul>
-                </li>
 
                 <li class="slide">
                     <a href="{{ route('notice.index') }}"
                         class="side-menu__item has-link @if (\Route::is('notice.index*')) active @endif">
                         <i class="fa fa-list-alt fs-6"></i>
-                        <span class="side-menu__label mx-2">News And Events</span>
+                        <span class="side-menu__label mx-2">News And Events ({{ countNotice() ?? '0' }})</span>
                     </a>
                 </li>
 
@@ -165,44 +110,22 @@
                     <a class="side-menu__item has-link @if (\Route::is('download.index*')) active @endif"
                         data-bs-toggle="slide" href="{{ route('download.index') }}">
                         <i class="fa fa-download fs-6"></i>
-                        <span class="side-menu__label mx-2">Download</span>
+                        <span class="side-menu__label mx-2">Download ({{ countDownload() ?? '0' }})</span>
                     </a>
                 </li>
 
                 <li class="slide">
-                    <a class="side-menu__item has-link @if (\Route::is('blog.index*')) active @endif"
-                        data-bs-toggle="slide" href="{{ route('blog.index') }}">
-                        <i class="fa fa-clipboard fs-6"></i>
-                        <span class="side-menu__label mx-2">Blog</span>
+                    <a class="side-menu__item has-link @if (\Route::is('contact.index*')) active @endif"
+                        data-bs-toggle="slide" href="{{ route('contact.index') }}">
+                        <i class="fa fa-file-image-o fs-6"></i>
+                        <span class="side-menu__label mx-2">Contact Us ({{ contactusCount() ?? '0' }})</span>
                     </a>
                 </li>
 
-                <li class="slide @if (\Route::is('contact.index*', 'admission.index*', 'apply.index*')) is-expanded @endif">
-                    <a class="side-menu__item @if (\Route::is('contact.index*', 'admission.index*', 'apply.index*')) active @endif"
-                        data-bs-toggle="slide" href="#">
-                        <i class="fa fa-file-image-o fs-6"></i>
-                        <span class="side-menu__label mx-2">Contact Us</span><i
-                            class="angle fa fa-angle-right"></i></a>
-                    <ul class="slide-menu @if (\Route::is('contact.index*', 'contact.index*', 'admission.index*')) active @endif">
-                        <li class="side-menu-label1"><a href="javascript:void(0)">Utilities</a></li>
-                        <li><a href="{{ route('contact.index') }}"
-                                class="slide-item @if (\Route::is('contact.index*')) active @endif"><i
-                                    class="fa fa-file-image-o fs-6  mx-2"></i>Contact</a></li>
-                        <li><a href="{{ route('apply.index') }}"
-                                class="slide-item @if (\Route::is('apply.index*')) active @endif"><i
-                                    class="fa fa-file-video-o fs-6  mx-2"></i>Apply</a></li>
-                        <li><a href="{{ route('admission.index') }}"
-                                class="slide-item @if (\Route::is('admission.index*')) active @endif"><i
-                                    class="fa fa-file-video-o fs-6  mx-2"></i>Admission</a></li>
+            </ul>
+            </li>
 
 
-
-                    </ul>
-                </li>
-
-                <li><a href="{{ route('ajax.index') }}"
-                        class="slide-item @if (\Route::is('ajax.index*')) active @endif"><i
-                            class="fa fa-file-video-o fs-6  mx-2"></i>Ajax TEst</a></li>
 
 
             </ul>

@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-    @include('frontend.includes.modal')
+
 
     <section class="homepage-content-wrapper">
         @if (!is_null($data['introduction']))

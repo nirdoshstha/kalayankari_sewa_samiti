@@ -5,28 +5,17 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\ImageController;
-use App\Http\Controllers\backend\BlogController;
-use App\Http\Controllers\backend\TeamController;
-use App\Http\Controllers\backend\AlbumController;
-use App\Http\Controllers\backend\AwardController;
-use App\Http\Controllers\backend\VideoController;
 use App\Http\Controllers\backend\NoticeController;
 use App\Http\Controllers\backend\SliderController;
 use App\Http\Controllers\backend\ProfileController;
 use App\Http\Controllers\backend\SettingController;
-use App\Http\Controllers\backend\DownloadController;
-use App\Http\Controllers\backend\FacilityController;
+use App\Http\Controllers\backend\DownloadController; 
 use App\Http\Controllers\backend\ContactUsController;
 use App\Http\Controllers\backend\DashboardController;
-use App\Http\Controllers\backend\ObjectiveController;
-use App\Http\Controllers\frontend\FrontendController;
-use App\Http\Controllers\backend\OurServiceController;
-use App\Http\Controllers\backend\PopupModalController;
+use App\Http\Controllers\backend\ObjectiveController; 
 use App\Http\Controllers\backend\AdminCreateController;
 use App\Http\Controllers\backend\ChairpersonController;
-use App\Http\Controllers\backend\TestimonialController;
-use App\Http\Controllers\backend\IntroductionController;
-use App\Http\Controllers\backend\ClassInformationController;
+use App\Http\Controllers\backend\IntroductionController; 
 use App\Http\Controllers\backend\OrganizationStructureController;
 use App\Http\Controllers\backend\ThakaliHeadController;
 
@@ -60,28 +49,22 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
     //Home
 
     //Popup Modal
-    Route::resource('modal', PopupModalController::class)->names('modal');
-    Route::get('modal-status', [PopupModalController::class, 'modalStatus'])->name('modal.status');
+   
 
     //Slider
     Route::resource('slider', SliderController::class);
     Route::get('slider-status', [SliderController::class, 'statusChanged'])->name('slider.status');
 
-    //Award
-    Route::resource('award', AwardController::class);
-    Route::get('award-status', [AwardController::class, 'statusChanged'])->name('award.status');
+    //Award 
 
-    //Team
-    Route::resource('team', TeamController::class);
-    Route::get('team-status', [TeamController::class, 'statusChanged'])->name('team.status');
+    //Team 
 
     //Notice
     Route::resource('notice', NoticeController::class);
     Route::get('notice-status', [NoticeController::class, 'statusChanged'])->name('notice.status');
 
     //Testimonial
-    Route::resource('testimonial', TestimonialController::class);
-    Route::get('testimonial-status', [TestimonialController::class, 'statusChanged'])->name('testimonial.status');
+
 
     //Introduction
     Route::resource('introduction', IntroductionController::class);
@@ -103,29 +86,18 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
     Route::resource('organization', OrganizationStructureController::class);
     Route::get('organization-status', [OrganizationStructureController::class, 'statusChanged'])->name('organization.status');
 
-    //Blog
-    Route::resource('blog', BlogController::class);
-    Route::get('blog-status', [BlogController::class, 'statusChanged'])->name('blog.status');
-
+    //Blog 
 
     //Album
-    Route::resource('album', AlbumController::class);
-    Route::get('album-status', [AlbumController::class, 'statusChanged'])->name('album.status');
+
 
     //Video
-    Route::resource('video', VideoController::class);
-    Route::get('video-status', [VideoController::class, 'statusChanged'])->name('video.status');
 
     //Facility
-    Route::resource('facility', FacilityController::class);
-    Route::get('facility-status', [FacilityController::class, 'statusChanged'])->name('facility.status');
-    Route::get('ajax-test', [FacilityController::class, 'ajaxTest'])->name('ajax.index');
-    Route::get('ajax-specific-data', [FacilityController::class, 'ajaxSpecific'])->name('ajax.get_single_data');
 
 
-    //Class Information
-    Route::resource('class-information', ClassInformationController::class);
-    Route::get('class-information-status', [ClassInformationController::class, 'statusChanged'])->name('class_information.status');
+
+    //Class Information 
 
     //Download
     Route::resource('download', DownloadController::class);
@@ -140,10 +112,7 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
 
 
     //Our Services
-    Route::resource('service', OurServiceController::class)->except('show');
-    Route::get('service-status', [OurServiceController::class, 'statusChanged'])->name('service.status');
-    Route::get('service/get-view-data', [OurServiceController::class, 'getViewData'])->name('service.get_view_data');
-    Route::get('service/get-edit-data', [OurServiceController::class, 'getEditData'])->name('service.get_edit_data');
+    
 
 
     //Upload Other images

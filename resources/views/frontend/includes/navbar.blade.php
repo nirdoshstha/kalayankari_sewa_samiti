@@ -107,22 +107,7 @@
                       </div>
                   </span>
                   <ul>
-                      {{-- @foreach (categories() as $category)
-                          @if ($category->subCategories->count())
-                              <li class="nav-dropdown"><a href="#" class="navbar__links">{{ $category->title }}
-                                      <i class="fa-solid fa-angle-down"></i></a>
-                                  <ul>
-                                      @foreach ($category->subCategories->where('status', '0') as $subcategory)
-                                          <li><a href="/{{ $subcategory->slug }}"
-                                                  class="sub__links">{{ $subcategory->title }}</a></li>
-                                      @endforeach
-                                  </ul>
-                              </li>
-                          @else
-                              <li class="nav-dropdown"><a href="/{{ $category->slug }}"
-                                      class="navbar__links">{{ $category->title }}</a> </li>
-                          @endif
-                      @endforeach --}}
+
                       <li><a href="{{ route('frontend.introduction') }}" class="navbar__links">Introduction</a></li>
                       <li><a href="{{ route('frontend.organization') }}" class="navbar__links">Organization
                               Structure</a>
@@ -131,30 +116,17 @@
 
                       <li><a href="{{ route('frontend.notices') }}" class="navbar__links">News And Events</a></li>
 
-                      {{-- <li class="nav-dropdown"><a href="#" class="navbar__links">Gallery <i
-                                  class="fa-solid fa-angle-down"></i></a>
-                          <ul>
-                              <li><a href="{{ route('frontend.album') }}" class="sub__links">Album</a></li>
-                              <li><a href="{{ route('frontend.video') }}" class="sub__links">Video</a></li>
-                          </ul>
-                      </li> --}}
                       <li class="nav-dropdown"><a href="{{ route('frontend.download') }}"
                               class="navbar__links">Downloads </a>
-                          {{-- <ul>
-                              @foreach (downloads() as $download)
-                                  <li><a href="{{ asset('storage/' . $download->image) }}" target="_blank"
-                                          class="sub__links">{{ $download->title }}</a></li>
-                              @endforeach
-                          </ul> --}}
+
                       </li>
-                      <li><a href="{{ route('frontend.contact') }}" class="navbar__links">Contact Us</a></li>
+                      {{-- <li><a href="{{ route('frontend.contact') }}" class="navbar__links">Contact Us</a></li> --}}
                       <a class="btn btn-nav mobile-btn" href="#" data-bs-toggle="offcanvas"
                           data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"> <span>Apply Now</span>
                       </a>
                   </ul>
                   <div class="contact_details">
-                      <a class="btn btn-nav" href="#" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
-                          aria-controls="offcanvasRight"> <span>Apply Now</span> </a>
+                      <a class="btn btn-nav" href="{{ route('frontend.contact') }}"> <span>Contact Us</span> </a>
                   </div>
               </div>
           </div>
