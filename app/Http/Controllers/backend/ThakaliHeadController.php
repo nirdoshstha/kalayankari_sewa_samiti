@@ -124,6 +124,21 @@ class ThakaliHeadController extends BackendBaseController
         ]);
     }
 
+        public function statusChangedHome(Request $request)
+    {
+
+        $thakali_id = $request['thakali_id'];
+
+        $thakali = $this->model->find($thakali_id);
+        $thakali->status_home = $thakali->status_home ? '0' : '1';
+        $thakali->save();
+
+        return response()->json([
+            'success_message' => 'Thakali Status Home Change Successfully',
+            'url' => route($this->base_route . 'index'),
+        ]);
+    }
+
     public function destroy($id)
     {
         $thakali = $this->model->find($id);

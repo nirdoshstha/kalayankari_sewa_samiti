@@ -17,9 +17,15 @@
                 <div class="card-body">
                     <div class="d-flex justity-content-between">
                         <h5 class="card-title">{{ $panel ?? '' }} List </h5>
-                        <i class="fa fa-plus-circle ms-auto text-success" data-bs-toggle="modal" data-bs-target="#largemodal"
-                            title="Add Post" style="font-size: 26px;"></i>
 
+                        <i class="fa fa-plus-circle ms-auto text-success px-3" data-bs-toggle="modal" data-bs-target="#largemodal"
+                            title="Add Post" style="font-size: 28px;"></i>
+                        <div class="main-toggle-group d-sm-flex align-items-center">
+                            <div class="toggle show_home toggle-md toggle-default mb-2 {{ $data['chairperson']->status_home == '1' ? 'on' : 'off' }}"
+                                data-id="{{ $data['chairperson']->id }}">
+                                <span></span>
+                            </div>
+                        </div>
                     </div>
 
 
@@ -505,6 +511,27 @@
 
                 $.ajax({
                     url: "{{ route('chairperson.status') }}",
+                    data: {
+                        chairperson_id: chairperson_id
+                    },
+                    success: function(resp) {
+                        // toastr.success(resp.success_message);
+                        successAlert(resp.success_message);
+                        // location.reload();
+                        window.location.href = res.url;
+                    },
+                    error: function(err) {
+                        errorAlert('error');
+                    }
+                })
+            });
+
+            $('.show_home').on('click', function() {
+
+                let chairperson_id = $(this).attr('data-id');
+
+                $.ajax({
+                    url: "{{ route('chairperson.status_home') }}",
                     data: {
                         chairperson_id: chairperson_id
                     },

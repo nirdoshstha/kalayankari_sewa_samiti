@@ -32,8 +32,8 @@
                     </a>
                 </li>
 
-                <li class="slide @if (\Route::is('slider.index*', 'award.index*', 'team.index*', 'notice.index*', 'testimonial.index*')) is-expanded @endif">
-                    <a class="side-menu__item @if (\Route::is('slider.index*', 'award.index*', 'team.index*', 'notice.index*', 'testimonial.index*')) active @endif" data-bs-toggle="slide"
+                <li class="slide @if (\Route::is('slider.index*')) is-expanded @endif">
+                    <a class="side-menu__item @if (\Route::is('slider.index*')) active @endif" data-bs-toggle="slide"
                         href="#">
                         <i class="fa fa-file-image-o fs-6"></i>
                         <span class="side-menu__label mx-2">Home</span><i class="angle fa fa-angle-right"></i></a>
@@ -45,12 +45,6 @@
 
                     </ul>
                 </li>
-
-
-
-
-
-
 
                 <li class="slide @if (\Route::is('introduction.index*')) is-expanded @endif">
                     <a class="side-menu__item @if (\Route::is('introduction.index*')) active @endif" data-bs-toggle="slide"
@@ -106,12 +100,29 @@
                     </a>
                 </li>
 
-                <li class="slide">
+                {{-- <li class="slide">
                     <a class="side-menu__item has-link @if (\Route::is('download.index*')) active @endif"
                         data-bs-toggle="slide" href="{{ route('download.index') }}">
                         <i class="fa fa-download fs-6"></i>
-                        <span class="side-menu__label mx-2">Download ({{ countDownload() ?? '0' }})</span>
+                        <span class="side-menu__label mx-2">Resources ({{ countDownload() ?? '0' }})</span>
                     </a>
+                </li> --}}
+
+                <li class="slide @if (\Route::is('slider.index*')) is-expanded @endif">
+                    <a class="side-menu__item @if (\Route::is('slider.index*')) active @endif" data-bs-toggle="slide"
+                        href="#">
+                        <i class="fa fa-file-image-o fs-6"></i>
+                        <span class="side-menu__label mx-2">Resources</span><i class="angle fa fa-angle-right"></i></a>
+                    <ul class="slide-menu">
+                        <li class="side-menu-label1"><a href="javascript:void(0)">Utilities</a></li>
+                        <li><a href="{{ route('download.index') }}"
+                                class="slide-item @if (\Route::is('download.index*')) active @endif">Annual Progress
+                                Report</a></li>
+                        <li><a href="{{ route('download.index') }}"
+                                class="slide-item @if (\Route::is('download.index*')) active @endif">Constitution &
+                                Rules </a></li>
+
+                    </ul>
                 </li>
 
                 <li class="slide">

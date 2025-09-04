@@ -19,6 +19,12 @@
                         <h5 class="card-title">{{ $panel ?? '' }} List </h5>
                         <i class="fa fa-plus-circle ms-auto text-success" data-bs-toggle="modal" data-bs-target="#largemodal"
                             title="Add Post" style="font-size: 26px;"></i>
+                        <div class="main-toggle-group d-sm-flex align-items-center">
+                            <div class="toggle show_hide toggle-md toggle-default mb-2 {{ $data['introduction']->status == '1' ? 'on' : 'off' }}"
+                                data-id="{{ $data['introduction']->id }}">
+                                <span></span>
+                            </div>
+                        </div>
                     </div>
                     <div class="table-responsive">
                         <table id="user-datatable" class="table table-bordered table-striped table-hover">

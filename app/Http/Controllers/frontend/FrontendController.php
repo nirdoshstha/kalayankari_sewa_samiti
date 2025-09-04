@@ -30,13 +30,12 @@ class FrontendController extends Controller
     public function index()
     {
         $data = [];
-        $data['introduction'] = Introduction::active()->where('type', 'page')->first();
+        $data['introduction'] = Introduction::where('type', 'page')->first();
         $data['objectives'] = Objective::active()->latest()->where('type', 'post')->get();
         $data['chairperson'] = Chairperson::where('type', 'page')->first();
         $data['chairpersons'] = Chairperson::latest()->where('status', 1)->where('type', 'post')->get();
         $data['thakali'] = ThakaliHead::where('type', 'page')->first();
         $data['thakalis'] = ThakaliHead::latest()->where('status', 1)->where('type', 'post')->get();
-
 
         return view('frontend.index', compact('data'));
     }

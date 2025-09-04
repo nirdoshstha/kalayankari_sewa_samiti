@@ -183,8 +183,8 @@
                                             <div class="news-desc d-flex flex-column text-center">
                                                 <h6>{{ $objective->title }}</h6>
                                                 <span class="date" style="font-size: 12px">From :
-                                                    {{ $objective->created_at->format('Y-m-d') }} To :
-                                                    {{ $objective->created_at->format('Y-m-d') }} </span>
+                                                    {{ $objective->start_date }} To :
+                                                    {{ $objective->end_date }} </span>
 
                                             </div>
 
@@ -245,8 +245,8 @@
                                             <div class="news-desc d-flex flex-column text-center">
                                                 <h6>{{ $thakali->title }}</h6>
                                                 <span class="date" style="font-size: 12px">From :
-                                                    {{ $thakali->created_at->format('Y-m-d') }} To :
-                                                    {{ $thakali->created_at->format('Y-m-d') }} </span>
+                                                    {{ $thakali->start_date }} To :
+                                                    {{ $thakali->end_date }} </span>
 
                                             </div>
 

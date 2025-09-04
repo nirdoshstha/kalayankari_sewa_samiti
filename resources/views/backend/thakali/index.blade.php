@@ -18,7 +18,14 @@
                     <div class="d-flex justity-content-between">
                         <h5 class="card-title">{{ $panel ?? '' }} List </h5>
                         <i class="fa fa-plus-circle ms-auto text-success" data-bs-toggle="modal" data-bs-target="#largemodal"
-                            title="Add Post" style="font-size: 26px;"></i>
+                            title="Add Post" style="font-size: 28px;"></i>
+
+                        <div class="main-toggle-group d-sm-flex align-items-center">
+                            <div class="toggle show_home toggle-md toggle-default mb-2 {{ $data['thakali']->status_home == '1' ? 'on' : 'off' }}"
+                                data-id="{{ $data['thakali']->id }}">
+                                <span></span>
+                            </div>
+                        </div>
 
                     </div>
 
@@ -505,6 +512,27 @@
 
                 $.ajax({
                     url: "{{ route('thakali.status') }}",
+                    data: {
+                        thakali_id: thakali_id
+                    },
+                    success: function(resp) {
+                        // toastr.success(resp.success_message);
+                        successAlert(resp.success_message);
+                        // location.reload();
+                        window.location.href = res.url;
+                    },
+                    error: function(err) {
+                        errorAlert('error');
+                    }
+                })
+            });
+
+            $('.show_home').on('click', function() {
+
+                let thakali_id = $(this).attr('data-id');
+
+                $.ajax({
+                    url: "{{ route('thakali.status_home') }}",
                     data: {
                         thakali_id: thakali_id
                     },

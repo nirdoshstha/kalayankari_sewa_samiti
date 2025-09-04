@@ -98,31 +98,38 @@
       <div class="justify-content-center align-items-center gap-2 d-flex flex-wrap">
           @forelse (chairpersons() as $chairperson)
               <img src="{{ asset('storage/' . $chairperson->image) }}" class="img-thumbnail p-0"
-                  width="90px" alt="Chairperson Image">
-
+                  width="90px" alt="{{ $chairperson->title }}">
           @empty
           @endforelse
-
       </div>
   </div>
-</div>
 
-</div>
-{{-- <div class="col-md-4 col-lg-5">
+  <div class="col-md-3 col-lg-3">
+      <div class="footer__title mb-3">
+          <span>Thakali Head</span>
+      </div>
+      <div class="justify-content-center align-items-center gap-2 d-flex flex-wrap">
+          @forelse (thakalis() as $thakali)
+              <img src="{{ asset('storage/' . $thakali->image) }}" class="img-thumbnail p-0"
+                  width="90px" alt="{{ $thakali->title }}">
+          @empty
+          @endforelse
+      </div>
+  </div>
+  {{-- <div class="col-md-3 col-lg-3">
       <div class="map">
           @if (setting()?->google_map)
               <iframe src="{{ setting()?->google_map ?? '' }}" width="100%" height="280"
                   style="border:0;" allowfullscreen="" loading="lazy"
                   referrerpolicy="no-referrer-when-downgrade"></iframe>
           @else
-               
-              <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d14129.731766265131!2d85.34084!3d27.703916!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb199ec18003b1%3A0xb5bd3702e70173fa!2sAllstar%20Technology!5e0!3m2!1sen!2snp!4v1726155064195!5m2!1sen!2snp"
-                  width="100%" height="280" style="border:0;" allowfullscreen="" loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"></iframe>
+              
           @endif
       </div>
   </div> --}}
+</div>
+</div>
+
 </div>
 </div>
 </div>

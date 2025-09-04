@@ -124,6 +124,21 @@ class ChairpersonController extends BackendBaseController
         ]);
     }
 
+    public function statusChangedHome(Request $request)
+    {
+
+        $chairperson_id = $request['chairperson_id'];
+
+        $chairperson = $this->model->find($chairperson_id);
+        $chairperson->status_home = $chairperson->status_home ? '0' : '1';
+        $chairperson->save();
+
+        return response()->json([
+            'success_message' => 'Chairperson Status Home Change Successfully',
+            'url' => route($this->base_route . 'index'),
+        ]);
+    }
+
     public function destroy($id)
     {
         $chairperson = $this->model->find($id);

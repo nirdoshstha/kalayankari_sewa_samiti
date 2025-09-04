@@ -9,26 +9,16 @@ use App\Http\Controllers\backend\NoticeController;
 use App\Http\Controllers\backend\SliderController;
 use App\Http\Controllers\backend\ProfileController;
 use App\Http\Controllers\backend\SettingController;
-use App\Http\Controllers\backend\DownloadController; 
+use App\Http\Controllers\backend\DownloadController;
 use App\Http\Controllers\backend\ContactUsController;
 use App\Http\Controllers\backend\DashboardController;
-use App\Http\Controllers\backend\ObjectiveController; 
+use App\Http\Controllers\backend\ObjectiveController;
 use App\Http\Controllers\backend\AdminCreateController;
 use App\Http\Controllers\backend\ChairpersonController;
-use App\Http\Controllers\backend\IntroductionController; 
+use App\Http\Controllers\backend\IntroductionController;
 use App\Http\Controllers\backend\OrganizationStructureController;
 use App\Http\Controllers\backend\ThakaliHeadController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 
 Route::get('link-storage', function () {
@@ -39,32 +29,19 @@ Route::get('link-storage', function () {
 
 Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
 
-
-
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     Route::resource('setting', SettingController::class);
     Route::resource('profile', ProfileController::class);
     Route::post('password-changed', [ProfileController::class, 'passwordChanged'])->name('user.password_changed');
 
-    //Home
-
-    //Popup Modal
-   
-
     //Slider
     Route::resource('slider', SliderController::class);
     Route::get('slider-status', [SliderController::class, 'statusChanged'])->name('slider.status');
 
-    //Award 
-
-    //Team 
 
     //Notice
     Route::resource('notice', NoticeController::class);
     Route::get('notice-status', [NoticeController::class, 'statusChanged'])->name('notice.status');
-
-    //Testimonial
-
 
     //Introduction
     Route::resource('introduction', IntroductionController::class);
@@ -77,27 +54,16 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
     //Chairperson
     Route::resource('chairperson', ChairpersonController::class);
     Route::get('chairperson-status', [ChairpersonController::class, 'statusChanged'])->name('chairperson.status');
+    Route::get('chairperson-status-home', [ChairpersonController::class, 'statusChangedHome'])->name('chairperson.status_home');
 
     //Thakali Head
     Route::resource('thakali', ThakaliHeadController::class);
     Route::get('thakali-status', [ThakaliHeadController::class, 'statusChanged'])->name('thakali.status');
+    Route::get('thakali-status-home', [ThakaliHeadController::class, 'statusChangedHome'])->name('thakali.status_home');
 
     //Organization Structure
     Route::resource('organization', OrganizationStructureController::class);
     Route::get('organization-status', [OrganizationStructureController::class, 'statusChanged'])->name('organization.status');
-
-    //Blog 
-
-    //Album
-
-
-    //Video
-
-    //Facility
-
-
-
-    //Class Information 
 
     //Download
     Route::resource('download', DownloadController::class);
@@ -108,12 +74,6 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
     Route::get('contact-apply', [ContactUsController::class, 'applyContact'])->name('apply.index');
     Route::get('admission-apply', [ContactUsController::class, 'applyAdmission'])->name('admission.index');
     Route::delete('admission-delete/{id}', [ContactUsController::class, 'deleteAdmission'])->name('admission.delete');
-
-
-
-    //Our Services
-    
-
 
     //Upload Other images
     Route::post('upload', [ImageController::class, 'upload'])->name('admin.upload');

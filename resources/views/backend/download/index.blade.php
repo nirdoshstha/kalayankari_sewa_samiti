@@ -417,13 +417,8 @@
                                     </div>
                                 </div>
                                 <div class="tab-pane mb-3" id="tab2">
-
-
                                     <textarea name="description" class="form-control" id="summernote" style="height: 290px;">{{ isset($data['download']) ? $data['download']->description : old('description') }}</textarea>
-
                                     {{-- <label for="floatingName">Description</label> --}}
-
-
                                 </div>
 
                                 <div class="tab-pane" id="tab4">
@@ -465,8 +460,6 @@
                                     @endif
                                     <button type="reset" class="btn btn-secondary">Reset</button>
                                 </div>
-
-
                             </div>
                             </form>
                         </div>

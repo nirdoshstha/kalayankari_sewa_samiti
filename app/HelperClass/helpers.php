@@ -1,17 +1,11 @@
 <?php
 
-use App\Models\Blog;
 use App\Models\Chairperson;
-use App\Models\Team;
-use App\Models\Video;
 use App\Models\Notice;
 use App\Models\Slider;
 use App\Models\Contact;
 use App\Models\Setting;
 use App\Models\Download;
-use App\Models\OurService;
-use App\Models\PopupModal;
-use App\Models\Testimonial;
 use App\Models\ThakaliHead;
 use Illuminate\Support\Facades\File;
 
@@ -59,6 +53,14 @@ if (!function_exists('countDownload')) {
     }
 }
 
+if (!function_exists('downloads')) {
+    function downloads()
+    {
+        $downloads = Download::where('type', 'post')->limit(5)->get();
+        return $downloads;
+    }
+}
+
 if (!function_exists('contactusCount')) {
     function contactusCount()
     {
@@ -94,7 +96,18 @@ if (!function_exists('countChairperson')) {
 if (!function_exists('chairpersons')) {
     function chairpersons()
     {
-        $chairpersons = Chairperson::where('type', 'post')->limit(6)->get();
+        $chairpersons = Chairperson::where('status', 1)->where('type', 'post')->limit(6)->get();
         return $chairpersons;
+    }
+}
+
+
+
+
+if (!function_exists('thakalis')) {
+    function thakalis()
+    {
+        $thakalis = ThakaliHead::where('status', 1)->where('type', 'post')->limit(6)->get();
+        return $thakalis;
     }
 }
