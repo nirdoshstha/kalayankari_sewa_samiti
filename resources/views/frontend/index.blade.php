@@ -75,7 +75,7 @@
 
 
         {{-- Chairpersons  --}}
-        @if ($data['chairperson']->status_home === 1 && countChairperson() > 0)
+        @if ($data['chairperson']->status_home === 1)
             <div class="container">
                 <div class="my-5">
                     @if (!is_null($data['chairperson']))
@@ -140,7 +140,7 @@
         @endif
 
         {{-- Thakali Head  --}}
-        @if ($data['thakali']->status_home === 1 && countThakali() > 0)
+        @if ($data['thakali']->status_home === 1)
             <div class="my-5">
                 @if (!is_null($data['thakali']))
                     <div class="container">

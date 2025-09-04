@@ -80,12 +80,24 @@
                     </ul>
                 </li>
 
-                <li class="slide">
-                    <a href="{{ route('organization.index') }}"
-                        class="side-menu__item has-link @if (\Route::is('organization.index*')) active @endif">
-                        <i class="fa fa-list-alt fs-6"></i>
-                        <span class="side-menu__label mx-2">Organization Structure</span>
-                    </a>
+
+
+                <li class="slide @if (\Route::is('slider.index*')) is-expanded @endif">
+                    <a class="side-menu__item @if (\Route::is('slider.index*')) active @endif" data-bs-toggle="slide"
+                        href="#">
+                        <i class="fa fa-file-image-o fs-6"></i>
+                        <span class="side-menu__label mx-2">Organization Structure</span><i
+                            class="angle fa fa-angle-right"></i></a>
+                    <ul class="slide-menu">
+                        <li class="side-menu-label1"><a href="javascript:void(0)">Utilities</a></li>
+                        <li><a href="{{ route('organization.index') }}"
+                                class="slide-item @if (\Route::is('organization.index*')) active @endif"> Category
+                                Organization</a></li>
+                        <li><a href="{{ route('organization_post.index') }}"
+                                class="slide-item @if (\Route::is('organization_post.index*')) active @endif"> Posts
+                                Organization</a></li>
+
+                    </ul>
                 </li>
 
 
@@ -100,13 +112,7 @@
                     </a>
                 </li>
 
-                {{-- <li class="slide">
-                    <a class="side-menu__item has-link @if (\Route::is('download.index*')) active @endif"
-                        data-bs-toggle="slide" href="{{ route('download.index') }}">
-                        <i class="fa fa-download fs-6"></i>
-                        <span class="side-menu__label mx-2">Resources ({{ countDownload() ?? '0' }})</span>
-                    </a>
-                </li> --}}
+
 
                 <li class="slide @if (\Route::is('slider.index*')) is-expanded @endif">
                     <a class="side-menu__item @if (\Route::is('slider.index*')) active @endif" data-bs-toggle="slide"
@@ -118,8 +124,8 @@
                         <li><a href="{{ route('download.index') }}"
                                 class="slide-item @if (\Route::is('download.index*')) active @endif">Annual Progress
                                 Report</a></li>
-                        <li><a href="{{ route('download.index') }}"
-                                class="slide-item @if (\Route::is('download.index*')) active @endif">Constitution &
+                        <li><a href="{{ route('constitution.index') }}"
+                                class="slide-item @if (\Route::is('constitution.index*')) active @endif">Constitution &
                                 Rules </a></li>
 
                     </ul>

@@ -15,11 +15,12 @@ use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\ObjectiveController;
 use App\Http\Controllers\backend\AdminCreateController;
 use App\Http\Controllers\backend\ChairpersonController;
+use App\Http\Controllers\backend\ConstitutionRuleController;
 use App\Http\Controllers\backend\IntroductionController;
 use App\Http\Controllers\backend\OrganizationStructureController;
+use App\Http\Controllers\backend\OrganizationStructurePostController;
 use App\Http\Controllers\backend\ThakaliHeadController;
-
-
+use App\Models\OrganizationStructurePost;
 
 Route::get('link-storage', function () {
     Artisan::call('storage:link');
@@ -51,6 +52,11 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
     Route::resource('objective', ObjectiveController::class);
     Route::get('objective-status', [ObjectiveController::class, 'statusChanged'])->name('objective.status');
 
+    //Constitution & Rule
+    Route::resource('constitution', ConstitutionRuleController::class);
+    Route::get('constitution-status', [ConstitutionRuleController::class, 'statusChanged'])->name('constitution.status');
+
+
     //Chairperson
     Route::resource('chairperson', ChairpersonController::class);
     Route::get('chairperson-status', [ChairpersonController::class, 'statusChanged'])->name('chairperson.status');
@@ -61,9 +67,13 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->group(function () {
     Route::get('thakali-status', [ThakaliHeadController::class, 'statusChanged'])->name('thakali.status');
     Route::get('thakali-status-home', [ThakaliHeadController::class, 'statusChangedHome'])->name('thakali.status_home');
 
-    //Organization Structure
+    //Organization Structure Category
     Route::resource('organization', OrganizationStructureController::class);
     Route::get('organization-status', [OrganizationStructureController::class, 'statusChanged'])->name('organization.status');
+
+    //Organization Structure Post
+    Route::resource('organization_post', OrganizationStructurePostController::class);
+    Route::get('organization-post-status', [OrganizationStructurePostController::class, 'statusChanged'])->name('organization_post.status');
 
     //Download
     Route::resource('download', DownloadController::class);

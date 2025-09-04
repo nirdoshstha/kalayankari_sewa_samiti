@@ -6,26 +6,27 @@ use App\Traits\ImageTrait;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\OrganizationStructure;
+use App\Models\ConstitutionRule;
 
-class OrganizationStructureController extends BackendBaseController
+class ConstitutionRuleController extends BackendBaseController
 {
     use ImageTrait;
     protected $model;
-    protected $panel = 'Organization Structure Category';
-    protected $base_route = 'organization.';
-    protected $view_path = 'backend.organization.';
+    protected $panel = 'Constitution & Rule';
+    protected $base_route = 'constitution.';
+    protected $view_path = 'backend.constitution.';
 
     public function __construct()
     {
-        $this->model = new OrganizationStructure();
+        $this->model = new ConstitutionRule();
     }
 
     public function index()
     {
         $data = [];
-        $data['organizations'] = $this->model->where('type', 'post')->latest()->get();
-        $data['organization'] = $this->model->where('type', 'page')->first();
+
+        $data['constitutions'] = $this->model->where('type', 'post')->latest()->get();
+        // $data['constitution'] = $this->model->where('type', 'page')->first();
         return view($this->__loadDataToView($this->view_path . 'index'), compact('data'));
     }
 
@@ -33,25 +34,23 @@ class OrganizationStructureController extends BackendBaseController
     {
         $request->validate([
             'title' => 'required',
-            // 'rank' =>'required|string|unique:organizations,rank', 
-            'image' => 'nullable|max:2048',
         ]);
 
         try {
             $data = $request->all();
 
             if ($request->hasFile('image')) {
-                $banner = $this->imageUpload($request->image, 'organization');
+                $banner = $this->imageUpload($request->image, 'constitution');
                 $data['image'] = $banner;
             }
 
-            $organization = $this->model->create($data + [
+            $constitution = $this->model->create($data + [
                 'type' => $request->type,
                 'created_by' => auth()->user()->id,
             ]);
 
             return response()->json([
-                'success_message' => 'Organization Create Successfully',
+                'success_message' => 'Constitution Create Successfully',
                 'url' => route($this->base_route . 'index'),
                 'reload' => true
             ]);
@@ -67,36 +66,35 @@ class OrganizationStructureController extends BackendBaseController
     public function edit(Request $request, $id)
     {
         $data = [];
-        $data['organization'] = $this->model->find($id);
-        return view($this->__loadDataToView($this->view_path . 'edit'), compact('data'));
+        $data['constitution'] = $this->model->find($id);
+        $data['constitutions'] = $this->model->where('type', 'post')->latest()->get();
+        return view($this->__loadDataToView($this->view_path . 'index'), compact('data'));
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
             'title' => 'required',
-            // 'rank' =>'required|string|unique:organizations,rank',  
-            'image' => 'nullable|max:2048',
         ]);
 
-        $organization = $this->model->find($id);
+        $constitution = $this->model->find($id);
 
         try {
             $data = $request->all();
 
             if ($request->hasFile('image')) {
-                deleteImage($organization->image);
-                $banner = $this->imageUpload($request->image, 'organization');
+                deleteImage($constitution->image);
+                $banner = $this->imageUpload($request->image, 'constitution');
                 $data['image'] = $banner;
             }
 
-            $organization->update($data + [
+            $constitution->update($data + [
                 'type' => $request->type,
                 'updated_by' => auth()->user()->id,
             ]);
 
             return response()->json([
-                'success_message' => 'Organization Update Successfully',
+                'success_message' => 'Constitution Update Successfully',
                 'url' => route($this->base_route . 'index'),
                 'reload' => true
             ]);
@@ -112,27 +110,27 @@ class OrganizationStructureController extends BackendBaseController
     public function statusChanged(Request $request)
     {
 
-        $organization_id = $request['organization_id'];
+        $constitution_id = $request['constitution_id'];
 
-        $organization = $this->model->find($organization_id);
-        $organization->status = $organization->status ? '0' : '1';
-        $organization->save();
+        $constitution = $this->model->find($constitution_id);
+        $constitution->status = $constitution->status ? '0' : '1';
+        $constitution->save();
 
         return response()->json([
-            'success_message' => 'Organization Status Change Successfully',
+            'success_message' => 'Constitution Status Change Successfully',
             'url' => route($this->base_route . 'index'),
         ]);
     }
 
     public function destroy($id)
     {
-        $organization = $this->model->find($id);
+        $constitution = $this->model->find($id);
 
         try {
-            deleteImage($organization->image);
-            $organization->delete();
+            deleteImage($constitution->image);
+            $constitution->delete();
             return response()->json([
-                'success_message' => 'Organization Deleted Successfully',
+                'success_message' => 'Constitution Deleted Successfully',
                 'url' => route($this->base_route . 'index'),
                 'reload' => true
             ]);

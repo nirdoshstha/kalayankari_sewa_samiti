@@ -17,6 +17,7 @@ use App\Models\ClassInformation;
 use App\Http\Controllers\Controller;
 use App\Models\AdmissionForm;
 use App\Models\Chairperson;
+use App\Models\ConstitutionRule;
 use App\Models\Download;
 use App\Models\Introduction;
 use App\Models\Objective;
@@ -65,6 +66,7 @@ class FrontendController extends Controller
     public function download()
     {
         $data = [];
+        $data['constitutions'] = ConstitutionRule::active()->where('type', 'post')->latest()->get();;
         $data['download'] = Download::where('type', 'page')->first();
         $data['downloads'] = Download::where('type', 'post')->paginate(10);
         return view('frontend.pages.download', compact('data'));

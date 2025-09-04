@@ -117,13 +117,10 @@
                       <li><a href="{{ route('frontend.notices') }}" class="navbar__links">News And Events</a></li>
 
                       <li class="nav-dropdown"><a href="{{ route('frontend.download') }}"
-                              class="navbar__links">Downloads </a>
+                              class="navbar__links">Resources </a>
 
                       </li>
-                      {{-- <li><a href="{{ route('frontend.contact') }}" class="navbar__links">Contact Us</a></li> --}}
-                      <a class="btn btn-nav mobile-btn" href="#" data-bs-toggle="offcanvas"
-                          data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"> <span>Apply Now</span>
-                      </a>
+
                   </ul>
                   <div class="contact_details">
                       <a class="btn btn-nav" href="{{ route('frontend.contact') }}"> <span>Contact Us</span> </a>

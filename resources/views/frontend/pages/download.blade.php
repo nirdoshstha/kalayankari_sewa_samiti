@@ -51,49 +51,71 @@
 
     <div class="album-section section-margin">
         <div class="container">
-            <div class="album-wrapper">
-                <div class="row">
-                    <div class="col-8 mb-4 mx-auto">
-                        <h2 class="mb-3">{{ $data['download']->title ?? '' }}</h2>
-                        <p>{!! $data['download']->description ?? '' !!}</p>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Download Item</th>
-                                </tr>
-                            </thead>
-                            <tbody>
 
-
-                                @forelse ($data['downloads'] as $download)
-                                    <tr>
-                                        <th scope="row">{{ $loop->iteration }}</th>
-                                        <td>{{ $download->title }}</td>
-                                        <td>{{ date('d M, Y', strtotime($download->date)) }}</td>
-                                        <td><a href="{{ asset('storage/' . $download->image) }}" target="_blank"
-                                                class="" download> <i class="fa-solid fa-download"></i>
-                                                Download</a></td>
-                                    </tr>
+            @if ($data['constitutions']->count() > 0)
+                <div class="container">
+                    <div class="row mb-4">
+                        <div class="col-12 col-md-6 col-lg-12 ">
+                            <div class="about-desc">
+                                @forelse ($data['constitutions'] as $constitution)
+                                    <h2 class="title-label">{{ $constitution->title ?? '' }}</h2>
+                                    <p> {!! $constitution->description ?? '' !!} </p>
                                 @empty
-                                    <tr>
-                                        <td colspan="4"><span class="text-danger">No Items found</span></td>
-                                    </tr>
                                 @endforelse
 
-
-
-                            </tbody>
-                        </table>
-                        <div class="d-flex justify-content-center mt-4 ">
-
-                            {{ $data['downloads']->links() }}
+                            </div>
+                            {{-- --}}
                         </div>
-
-
                     </div>
                 </div>
+            @endif
+
+            <div class="row px-2">
+                <div class="col-12 col-md-6 col-lg-12">
+                    <div class="about-desc">
+                        <h2 class="title-label mb-3">{{ $data['download']->title ?? '' }}</h2>
+                        <p>{!! $data['download']->description ?? '' !!}</p>
+                    </div>
+
+                    <table class="table responsive table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Download Item</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            @forelse ($data['downloads'] as $download)
+                                <tr>
+                                    <th scope="row">{{ $loop->iteration }}</th>
+                                    <td>{{ $download->title }}</td>
+                                    <td>{{ date('d M, Y', strtotime($download->date)) }}</td>
+                                    <td><a href="{{ asset('storage/' . $download->image) }}" target="_blank" class=""
+                                            download> <i class="fa-solid fa-download"></i>
+                                            Download</a></td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4"><span class="text-danger">No Items found</span></td>
+                                </tr>
+                            @endforelse
+
+
+
+                        </tbody>
+                    </table>
+                    <div class="d-flex justify-content-center mt-4 ">
+
+                        {{ $data['downloads']->links() }}
+                    </div>
+
+
+                </div>
             </div>
-        @endsection
+        </div>
+    </div>
+@endsection
