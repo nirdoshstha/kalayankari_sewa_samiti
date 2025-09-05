@@ -205,12 +205,31 @@
                                         <label for="floatingName">Title</label>
                                     </div>
                                 </div>
+
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="text" name="sub_title" class="form-control title"
-                                            value="{{ isset($objective) ? $objective->sub_title : '' }}" id="floatingName"
+                                        <input type="text" name="rank" class="form-control title"
+                                            value="{{ isset($objective) ? $objective->rank : '' }}" id="floatingName"
                                             placeholder="Album Name">
-                                        <label for="floatingName">Subtitle</label>
+                                        <label for="floatingName">Rank</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="date" name="start_date" class="form-control title"
+                                            value="{{ isset($objective) ? $objective->start_date : '' }}" id="floatingName"
+                                            placeholder="Sub Title">
+                                        <label for="floatingName">Start Date</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-floating">
+                                        <input type="date" name="end_date" class="form-control title"
+                                            value="{{ isset($objective) ? $objective->end_date : '' }}" id="floatingName"
+                                            placeholder="Sub Title">
+                                        <label for="floatingName">End Date</label>
                                     </div>
                                 </div>
 
@@ -232,20 +251,13 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-floating">
-                                        <input type="text" name="rank" class="form-control title"
-                                            value="{{ isset($objective) ? $objective->rank : '' }}" id="floatingName"
-                                            placeholder="Album Name">
-                                        <label for="floatingName">Rank</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
+
+                                {{-- <div class="col-md-12">
                                     <div class="form-floating">
                                         <textarea name="description" class="form-control" style="height: 100px;">{{ isset($objective) ? $objective->description : '' }}</textarea>
                                         <label for="floatingName">Description</label>
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-danger"><i class="fa fa-edit fs-6"></i>
@@ -418,20 +430,7 @@
                                     <label for="floatingName">Title</label>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-floating">
-                                    <input type="text" name="sub_title" class="form-control title" value=""
-                                        id="floatingName" placeholder="Sub Title">
-                                    <label for="floatingName">Subtitle</label>
-                                </div>
-                            </div>
 
-                            <div class="col-md-6">
-                                <label for="" class="form-label">Image</label>
-                                <div class="form-group">
-                                    <input name="image" class="form-control mt-3" type="file">
-                                </div>
-                            </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
                                     <input type="number" name="rank" class="form-control title" value=""
@@ -439,12 +438,37 @@
                                     <label for="floatingName">Rank</label>
                                 </div>
                             </div>
+
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="date" name="start_date" class="form-control title" value=""
+                                        id="floatingName" placeholder="Sub Title">
+                                    <label for="floatingName">Start Date</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="date" name="end_date" class="form-control title" value=""
+                                        id="floatingName" placeholder="Sub Title">
+                                    <label for="floatingName">End Date</label>
+                                </div>
+                            </div>
                             <div class="col-md-12">
+                                <label for="" class="form-label">Image</label>
+                                <div class="form-group">
+                                    <input name="image" class="form-control mt-3" type="file">
+                                </div>
+                            </div>
+
+
+                            {{-- <div class="col-md-12">
                                 <div class="form-floating">
                                     <textarea name="description" class="form-control" style="height: 100px;"></textarea>
                                     <label for="floatingName">Description</label>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="text-center">
                                 <button type="submit" class="btn btn-info"><i class="fa fa-plus-circle fs-6"></i>

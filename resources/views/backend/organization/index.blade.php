@@ -43,7 +43,7 @@
                                                 width="40" /></td>
                                         <td>
                                             <div class="main-toggle-group d-sm-flex align-items-center">
-                                                <div class="toggle show_hide toggle-md toggle-{{ $organization->status == '1' ? 'success' : '' }} my-1 {{ $organization->status == '1' ? 'on' : 'off' }}"
+                                                <div class="toggle show_hide toggle-md toggle-{{ $organization->status == '0' ? 'success' : '' }} my-1 {{ $organization->status == '0' ? 'on' : 'off' }}"
                                                     data-id="{{ $organization->id }}">
                                                     <span></span>
                                                 </div>

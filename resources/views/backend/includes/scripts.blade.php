@@ -112,7 +112,9 @@
          fontNames: ['Arial', 'Courier New', 'Times New Roman', 'Verdana', 'Roboto',
              'Poppins'
          ], // ✅ add your fonts
-         fontSizes: ['8', '10', '12', '14', '16', '18', '20', '22', '24', '36', '48'] // ✅ custom sizes
+         fontSizes: ['8', '10', '12', '14', '15',
+             '16', '18', '20', '22', '24', '36', '48'
+         ] // ✅ custom sizes
      });
  </script>
  @stack('js')

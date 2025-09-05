@@ -27,4 +27,9 @@ class OrganizationStructure extends BackendBaseModel
         'created_by',
         'updated_by'
     ];
+
+    public function posts()
+    {
+        return $this->hasMany(OrganizationStructurePost::class, 'category_id', 'id');
+    }
 }

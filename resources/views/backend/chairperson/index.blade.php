@@ -18,8 +18,8 @@
                     <div class="d-flex justity-content-between">
                         <h5 class="card-title">{{ $panel ?? '' }} List </h5>
 
-                        <i class="fa fa-plus-circle ms-auto text-success px-3" data-bs-toggle="modal" data-bs-target="#largemodal"
-                            title="Add Post" style="font-size: 28px;"></i>
+                        <i class="fa fa-plus-circle ms-auto text-success px-3" data-bs-toggle="modal"
+                            data-bs-target="#largemodal" title="Add Post" style="font-size: 28px;"></i>
                         <div class="main-toggle-group d-sm-flex align-items-center">
                             <div class="toggle show_home toggle-md toggle-default mb-2 {{ $data['chairperson']->status_home == '1' ? 'on' : 'off' }}"
                                 data-id="{{ $data['chairperson']->id }}">
@@ -226,6 +226,16 @@
                                                 <label for="floatingName">Title</label>
                                             </div>
                                         </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-floating">
+                                                <input type="text" name="rank" class="form-control title"
+                                                    value="{{ isset($chairperson) ? $chairperson->rank : '' }}"
+                                                    id="floatingName" placeholder="Album Name">
+                                                <label for="floatingName">Rank</label>
+                                            </div>
+                                        </div>
+
                                         <div class="col-md-6">
                                             <div class="form-floating">
                                                 <input type="date" name="start_date" class="form-control title"
@@ -262,14 +272,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-floating">
-                                                <input type="text" name="rank" class="form-control title"
-                                                    value="{{ isset($chairperson) ? $chairperson->rank : '' }}"
-                                                    id="floatingName" placeholder="Album Name">
-                                                <label for="floatingName">Rank</label>
-                                            </div>
-                                        </div>
+
 
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-danger"><i class="fa fa-edit fs-6"></i>
@@ -550,8 +553,4 @@
 
         })
     </script>
-
-    <!-- INTERNAL Summernote Editor js -->
-    <script src="{{ asset('backend/assets/plugins/summernote-editor/summernote1.js') }}"></script>
-    <script src="{{ asset('backend/assets/js/summernote.js') }}"></script>
 @endpush

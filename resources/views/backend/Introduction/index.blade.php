@@ -509,8 +509,4 @@
 
             })
         </script>
-
-        <!-- INTERNAL Summernote Editor js -->
-        <script src="{{ asset('backend/assets/plugins/summernote-editor/summernote1.js') }}"></script>
-        <script src="{{ asset('backend/assets/js/summernote.js') }}"></script>
     @endpush

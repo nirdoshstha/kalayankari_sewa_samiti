@@ -57,58 +57,54 @@
                 <div class="container">
                     <div class="col-12 col-md-6 col-lg-12 ">
                         <div class="about-desc text-center">
-                            {{-- <h2 class="title-label">Former Chirpersons</h2> --}}
                             <h2 class="title-label">{{ $data['organization']->title ?? '' }}</h2>
                             <p> {!! $data['organization']->description ?? '' !!} </p>
                         </div>
-                        {{-- --}}
+
                     </div>
                 </div>
             @endif
             <div class="team-section py-5">
                 <div class="container">
-                    <div class="row">
-                        <div class="swiper testi">
-                            <div class="swiper-wrapper">
-                                @forelse ($data['organizations'] as $organization)
-                                    <div class="col-12 col-md-6 col-lg-3 swiper-slide">
-                                        <div class="team-card mb-4">
-                                            <div class="team-image">
-                                                <img src="{{ asset('storage/' . $organization->image) }}" width="100%"
-                                                    height="100%" alt="">
-                                            </div>
-                                            <div class="news-desc d-flex flex-column text-center">
-                                                <h6>{{ $organization->title }}</h6>
-                                                <span class="date" style="font-size: 12px">From :
-                                                    {{ $organization->start_date }} To :
-                                                    {{ $organization->end_date }} </span>
+                    @forelse ($data['organizations'] as $organization)
+                        <div class="col-12 col-md-6 col-lg-12 ">
+                            <div class="about-desc text-center mt-5">
+                                <h2 class="title-label">{{ $organization->title ?? '' }}</h2>
+                                <p> {!! $organization->description ?? '' !!} </p>
+                            </div>
+                        </div>
 
-                                            </div>
+                        <div class="row">
+                            <div class="swiper testi">
+                                <div class="swiper-wrapper">
 
-                                        </div>
-
-                                    </div>
-                                @empty
-                                    @for ($i = 1; $i <= 4; $i++)
-                                        <div class="col-12 col-md-6 col-lg-3">
-                                            <div class="team-card">
+                                    @foreach ($organization?->posts->where('status', 0) as $organizations)
+                                        <div class="col-12 col-md-6 col-lg-3 swiper-slide py-3">
+                                            <div class="team-card mb-4">
                                                 <div class="team-image">
-                                                    <img src="{{ asset('frontend/assets/image/team1.jpg') }}"
+                                                    <img src="{{ asset('storage/' . $organizations->image) }}"
                                                         width="100%" height="100%" alt="">
                                                 </div>
-                                                <div class="team-desc">
-                                                    <h4>Team Name</h4>
-                                                    <span>From : </span>
+                                                <div class="news-desc d-flex flex-column text-center">
+                                                    <h6>{{ $organizations->title }}</h6>
+                                                    <span class="date" style="font-size: 12px">From :
+                                                        {{ $organizations->start_date }} To :
+                                                        {{ $organizations->end_date }} </span>
                                                 </div>
                                             </div>
                                         </div>
-                                    @endfor
-                                @endforelse
+                                    @endforeach
+
+                                </div>
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"> </div>
                             </div>
-                            <div class="swiper-button-next"></div>
-                            <div class="swiper-button-prev"> </div>
                         </div>
-                    </div>
+                    @empty
+                    @endforelse
+
+
+
                 </div>
             </div>
         </div>

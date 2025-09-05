@@ -44,13 +44,13 @@ class FrontendController extends Controller
     public function introduction()
     {
         $data = [];
-        $data['introduction'] = Introduction::active()->where('type', 'page')->first();
+        $data['introduction'] = Introduction::where('type', 'page')->where('status', 1)->first();
         $data['objective'] = Objective::where('type', 'page')->first();
-        $data['objectives'] = Objective::active()->latest()->where('type', 'post')->get();
+        $data['objectives'] = Objective::active()->latest()->where('type', 'post')->paginate(12);
         $data['chairperson'] = Chairperson::where('type', 'page')->first();
-        $data['chairpersons'] = Chairperson::latest()->where('status', 1)->where('type', 'post')->get();
+        $data['chairpersons'] = Chairperson::latest()->where('status', 1)->where('type', 'post')->paginate(12);
         $data['thakali'] = ThakaliHead::where('type', 'page')->first();
-        $data['thakalis'] = ThakaliHead::latest()->where('status', 1)->where('type', 'post')->get();
+        $data['thakalis'] = ThakaliHead::latest()->where('status', 1)->where('type', 'post')->paginate(12);
 
         return view('frontend.pages.introduction', compact('data'));
     }
@@ -59,7 +59,7 @@ class FrontendController extends Controller
     {
         $data = [];
         $data['organization'] = OrganizationStructure::where('type', 'page')->first();
-        $data['organizations'] = OrganizationStructure::where('type', 'post')->get();
+        $data['organizations'] = OrganizationStructure::active()->where('type', 'post')->get();
         return view('frontend.pages.organization', compact('data'));
     }
 
@@ -123,43 +123,4 @@ class FrontendController extends Controller
             // return back()->with('status','Somethig went wrong.');
         }
     }
-
-
-
-    // public function admissionFormStore(Request $request)
-    // {
-    //     $request->validate([
-    //         'name' => 'required|string|max:30',
-    //         'grade' => 'required',
-    //         'current_grade' => 'required',
-    //         'gender' => 'required',
-    //         'email' => 'required',
-    //         'address' => 'required',
-    //         'phone' => 'required',
-    //         'father_name' => 'required',
-    //         'mother_name' => 'required',
-    //         'g-recaptcha-response' => ['required', new ReCaptcha]
-    //     ]);
-    //     try {
-    //         $data = $request->except('image');
-
-    //         if ($request->hasFile('image')) {
-    //             $image_name = $this->imageUpload($request->image, 'registration');
-    //             $data['image'] = $image_name;
-    //         }
-
-    //         $register = AdmissionForm::create($data);
-    //         return response()->json([
-    //             'success_message' => 'Thank you for your submit, we will contact u soon.',
-    //             'url' => route('frontend.admission_form'),
-    //             'reload' => true
-    //         ]);
-    //     } catch (\Exception $e) {
-    //         return response()->json([
-    //             'error_message' => 'Something Went Wrong !!',
-    //             'url' => route('frontend.admission_form'),
-    //             'reload' => true
-    //         ]);
-    //     }
-    // }
 }

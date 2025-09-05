@@ -16,22 +16,22 @@
 
 
     <section class="homepage-content-wrapper">
-        @if ($data['introduction']->status == 1)
+        @if ($data['introduction'] && $data['introduction']->status == 1)
             <div class="about-section">
                 <div class="container">
-                    <div class="row align-items-end g-4 g-md-5">
+                    <div class="row align-items-center g-4 g-md-5">
                         <div class="col-12 col-md-6 col-lg-4">
-                            <div class="about-img">
+                            <div class="about-img mt-2">
                                 <img src="{{ asset('storage/' . $data['introduction']->image) }}" width="100%" height="100%"
                                     alt="">
                             </div>
                         </div>
-                        <div class="col-12 col-md-6 col-lg-8 ">
+                        <div class="col-12 col-md-6 col-lg-8">
                             <div class="about-desc">
                                 <h2 class="title-label">{{ $data['introduction']->title ?? '' }}</h2>
-                                <h1>{{ $data['introduction']->title ?? '' }}</h1>
-                                <p> {!! $data['introduction']->description ?? '' !!}</p>
-                                <a href="#" class="btn-read">
+                                {{-- <p> {!! Str::limit($data['introduction']->description ?? '', 750, '...') !!}</p> --}}
+                                <p>{!! Str::limit(strip_tags($data['introduction']->description ?? ''), 415) !!}</p>
+                                <a href="{{ route('frontend.introduction') }}" class="btn-read">
                                     Read More
                                 </a>
                             </div>

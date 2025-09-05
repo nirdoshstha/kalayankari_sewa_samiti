@@ -8,14 +8,15 @@
                       </div>
                       <div class="school-address">
                           <ul class="fa-ul ms-4">
+
                               @if (isset(setting()?->address))
                                   <li><span class="fa-li"><i
                                               class="fa-solid fa-location-dot"></i></span><span>{{ setting()->address ?? '' }}</span></a>
                                   </li>
                               @else
-                                  <li><span class="fa-li"><i
-                                              class="fa-solid fa-location-dot"></i></span><span>Maitidevi,
-                                          Seto Pul , Kathmandu</span></a>
+                                  <li><span class="fa-li"><i class="fa-solid fa-location-dot"></i></span><span>Near
+                                          Swoyambu Stupa, Nagarjuna-5,
+                                          Kathmandu</span></a>
                                   </li>
                               @endisset
 
@@ -24,8 +25,7 @@
                                               class="fa-solid fa-phone"></i></span><span>{{ setting()->phone ?? '' }}</span></a>
                                   </li>
                               @else
-                                  <li><span class="fa-li"><i
-                                              class="fa-solid fa-phone"></i></span><span>+977-9801234567
+                                  <li><span class="fa-li"><i class="fa-solid fa-phone"></i></span><span>+01-4950132
                                       </span></li>
                               @endisset
 
@@ -35,7 +35,7 @@
                                   </li>
                               @else
                                   <li><span class="fa-li"><i class="fa-solid fa-phone"></i></span><span>
-                                          01-4312345 / 4537537</span></li>
+                                          9851357036</span></li>
                               @endisset
 
                               @if (isset(setting()?->email))
@@ -44,7 +44,7 @@
                                   </li>
                               @else
                                   <li><span class="fa-li"><i
-                                              class="fa-solid fa-envelope"></i></span><span>info@mail.com</span>
+                                              class="fa-solid fa-envelope"></i></span><span>kalyankarisewasamiti@gmail.com</span>
                                   </li>
                               @endisset
 

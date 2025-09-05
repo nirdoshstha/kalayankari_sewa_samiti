@@ -53,7 +53,7 @@
      var swiper = new Swiper(".testi", {
          slidesPerView: 1,
          spaceBetween: 20,
-        //  centeredSlides: true,
+         //  centeredSlides: true,
          loop: true,
          speed: 1000,
          grabCursor: true,
@@ -93,7 +93,7 @@
              swp.autoplay.start();
          });
      });
- </script>z
+ </script>
  <script>
      $(document).on("submit", "form.main_form", function(e) {
          e.preventDefault();
@@ -214,21 +214,5 @@
      }
  </script>
 
- <script src="https://www.google.com/recaptcha/api.js?render={{ env('GOOGLE_RECAPTCHA_KEY') }}"></script>
 
- <script type="text/javascript">
-     $(document).ready(() => {
-
-         grecaptcha.ready(function() {
-             grecaptcha.execute("{{ env('GOOGLE_RECAPTCHA_KEY') }}", {
-                 action: 'submit'
-             }).then(function(token) {
-                 $('.main_form').prepend(
-                     '<input type="hidden" name="g-recaptcha-response" value="' + token +
-                     '">');
-             });
-         });
-
-     });
- </script>
  @stack('js')

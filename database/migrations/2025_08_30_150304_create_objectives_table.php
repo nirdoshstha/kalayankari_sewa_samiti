@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('sub_title')->nullable();
             $table->string('image')->nullable();
             $table->string('rank')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->mediumText('description')->nullable();
             $table->string('seo_title')->nullable();
             $table->string('seo_keyword')->nullable();

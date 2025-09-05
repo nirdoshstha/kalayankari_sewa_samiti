@@ -27,8 +27,8 @@
                         <table id="user-datatable" class="table table-bordered table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th style="width: 10%">#</th>
-                                    <th style="width: 15%">Category</th>
+                                    <th style="width: 5%">#</th>
+                                    <th style="width: 20%">Category</th>
                                     <th style="width: 25%">Name</th>
                                     <th style="width: 15%">Image</th>
                                     <th style="width: 15%">Status</th>
@@ -45,7 +45,7 @@
                                                 class="img-thumbnail" width="40" /></td>
                                         <td>
                                             <div class="main-toggle-group d-sm-flex align-items-center">
-                                                <div class="toggle show_hide toggle-md toggle-{{ $organization_post->status == '1' ? 'success' : '' }} my-1 {{ $organization_post->status == '1' ? 'on' : 'off' }}"
+                                                <div class="toggle show_hide toggle-md toggle-{{ $organization_post->status == '0' ? 'success' : '' }} my-1 {{ $organization_post->status == '0' ? 'on' : 'off' }}"
                                                     data-id="{{ $organization_post->id }}">
                                                     <span></span>
                                                 </div>
@@ -77,7 +77,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-
+                        {{-- {{$data['organization_posts']->links()}} --}}
                     </div>
 
                 </div>

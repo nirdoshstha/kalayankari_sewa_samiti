@@ -25,8 +25,8 @@ class OrganizationStructurePostController extends BackendBaseController
     public function index()
     {
         $data = [];
-        $data['organizations_cat'] = OrganizationStructure::where('type', 'post')->where('status', 1)->latest()->get();
-        $data['organization_posts'] = OrganizationStructurePost::active()->latest()->get();
+        $data['organizations_cat'] = OrganizationStructure::where('type', 'post')->latest()->get();
+        $data['organization_posts'] = OrganizationStructurePost::latest()->get();
         return view($this->__loadDataToView($this->view_path . 'index'), compact('data'));
     }
 
